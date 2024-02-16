@@ -20,7 +20,7 @@ const config = {
     extend: {
       colors: {
         "colorau-azul": "#001C37",
-        "colorau-abarelo": "#FFE522",
+        "colorau-amarelo": "#FFE522",
         "colorau-vermelho": "#FF0D38",
         "colorau-piscina": "00BCFA",
         border: "hsl(var(--border))",

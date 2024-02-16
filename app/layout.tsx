@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-poppins",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Colorau",
@@ -16,7 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(poppins.variable, "flex h-screen flex-col")}>
+        <div className="h-32 w-full bg-[url('/capa.png')] bg-contain bg-repeat" />
+        <div className="w-full max-w-5xl flex-1 m-auto">{children}</div>
+        <div className="flex h-20 w-full items-center justify-center bg-colorau-azul bg-contain bg-repeat text-white">
+          Colorau 2024
+        </div>
+      </body>
     </html>
   );
 }
