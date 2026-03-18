@@ -69,7 +69,7 @@ export default function SobrePage() {
         </Reveal>
 
         <Reveal className="section-card section-inverse p-0">
-          <div className="flex flex-col gap-10 px-6 py-7 md:px-10 md:py-10">
+          <div className="flex flex-col gap-10 py-7 md:px-10 md:py-10">
             <h2 className="text-3xl font-semibold md:text-5xl">
               Quem faz o COLORAU acontecer
             </h2>
