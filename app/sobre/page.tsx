@@ -88,7 +88,45 @@ export default function SobrePage() {
                         {role}
                       </h3>
                       <div className="mt-4">
-                        <TeamMemberCard member={member} />
+                        <div className="md:hidden">
+                          <article className="bg-white text-black">
+                            <div className="grid grid-cols-[120px_1fr]">
+                              <div className="relative min-h-[160px] bg-black/5">
+                                <Image
+                                  src={member.imageUrl}
+                                  alt={`Foto de ${member.name}`}
+                                  fill
+                                  className="object-cover grayscale"
+                                  sizes="120px"
+                                />
+                              </div>
+                              <div className="flex min-w-0 flex-col p-4">
+                                <p className="text-xs uppercase tracking-[0.14em] text-black/50">
+                                  Colorau
+                                </p>
+                                <h4 className="mt-2 text-xl font-semibold leading-tight">
+                                  {member.name}
+                                </h4>
+                                <p className="mt-1 text-xs uppercase tracking-[0.12em] text-black/70">
+                                  {member.role}
+                                </p>
+                              </div>
+                            </div>
+                            {member.bio && (
+                              <details className="border-t border-black/10 px-4 py-3">
+                                <summary className="cursor-pointer text-sm text-black/70">
+                                  Mini currículo
+                                </summary>
+                                <p className="mt-3 text-sm leading-relaxed text-black/75">
+                                  {member.bio}
+                                </p>
+                              </details>
+                            )}
+                          </article>
+                        </div>
+                        <div className="hidden md:block">
+                          <TeamMemberCard member={member} />
+                        </div>
                       </div>
                     </div>
                   ));
@@ -100,10 +138,48 @@ export default function SobrePage() {
                       {role}
                     </h3>
                     <div className="mt-4">
-                      <TeamMemberCard
-                        key={`${members[0].name}-${members[0].role}`}
-                        member={members[0]}
-                      />
+                      <div className="md:hidden">
+                        <article className="bg-white text-black">
+                          <div className="grid grid-cols-[120px_1fr]">
+                            <div className="relative min-h-[160px] bg-black/5">
+                              <Image
+                                src={members[0].imageUrl}
+                                alt={`Foto de ${members[0].name}`}
+                                fill
+                                className="object-cover grayscale"
+                                sizes="120px"
+                              />
+                            </div>
+                            <div className="flex min-w-0 flex-col p-4">
+                              <p className="text-xs uppercase tracking-[0.14em] text-black/50">
+                                Colorau
+                              </p>
+                              <h4 className="mt-2 text-xl font-semibold leading-tight">
+                                {members[0].name}
+                              </h4>
+                              <p className="mt-1 text-xs uppercase tracking-[0.12em] text-black/70">
+                                {members[0].role}
+                              </p>
+                            </div>
+                          </div>
+                          {members[0].bio && (
+                            <details className="border-t border-black/10 px-4 py-3">
+                              <summary className="cursor-pointer text-sm text-black/70">
+                                Mini currículo
+                              </summary>
+                              <p className="mt-3 text-sm leading-relaxed text-black/75">
+                                {members[0].bio}
+                              </p>
+                            </details>
+                          )}
+                        </article>
+                      </div>
+                      <div className="hidden md:block">
+                        <TeamMemberCard
+                          key={`${members[0].name}-${members[0].role}`}
+                          member={members[0]}
+                        />
+                      </div>
                     </div>
                   </div>,
                 ];

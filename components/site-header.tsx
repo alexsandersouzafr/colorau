@@ -8,26 +8,51 @@ import { ColorauLogo } from "@/components/colorau-logo";
 import { useThemeAccent } from "@/components/theme-provider";
 
 export function SiteHeader() {
+  const DOT_STAGGER_MS = 32;
+  const DOT_ENTER_MS = 240;
+  const CLOSE_BUFFER_MS = 80;
   const pathname = usePathname();
   const { accentId, options, setAccent } = useThemeAccent();
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+  const [isPaletteMounted, setIsPaletteMounted] = useState(false);
   const paletteRef = useRef<HTMLDivElement | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
   const orderedNavItems = [
     ...navItems.filter((item) => item.href !== "/corista"),
     ...navItems.filter((item) => item.href === "/corista"),
   ];
 
+  const openPalette = () => {
+    if (closeTimerRef.current) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setIsPaletteMounted(true);
+    window.requestAnimationFrame(() => setIsPaletteOpen(true));
+  };
+
+  const closePalette = () => {
+    setIsPaletteOpen(false);
+    if (closeTimerRef.current) {
+      window.clearTimeout(closeTimerRef.current);
+    }
+    closeTimerRef.current = window.setTimeout(() => {
+      setIsPaletteMounted(false);
+      closeTimerRef.current = null;
+    }, options.length * DOT_STAGGER_MS + DOT_ENTER_MS + CLOSE_BUFFER_MS);
+  };
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (!paletteRef.current) return;
       if (!paletteRef.current.contains(event.target as Node)) {
-        setIsPaletteOpen(false);
+        closePalette();
       }
     }
 
     function handleEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setIsPaletteOpen(false);
+        closePalette();
       }
     }
 
@@ -36,6 +61,9 @@ export function SiteHeader() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleEscape);
+      if (closeTimerRef.current) {
+        window.clearTimeout(closeTimerRef.current);
+      }
     };
   }, []);
 
@@ -74,7 +102,7 @@ export function SiteHeader() {
                   </Link>
                   <button
                     type="button"
-                    onClick={() => setIsPaletteOpen((state) => !state)}
+                    onClick={() => (isPaletteOpen ? closePalette() : openPalette())}
                     className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
                     aria-expanded={isPaletteOpen}
                     aria-label="Abrir menu de cores"
@@ -84,31 +112,43 @@ export function SiteHeader() {
                       style={{ backgroundColor: currentOption?.value ?? "#ffffff" }}
                     />
                   </button>
+                  {isPaletteMounted && (
                   <div
-                    className={`absolute right-0 top-[44px] z-50 flex items-center gap-2 rounded-full bg-black/90 p-2 backdrop-blur transition-all duration-250 ease-out ${
+                    className={`absolute left-1/2 top-[44px] z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 items-center gap-2 rounded-full bg-black/90 p-2 backdrop-blur transition-all duration-180 ease md:max-w-none ${
                       isPaletteOpen
                         ? "translate-y-0 scale-100 opacity-100"
                         : "pointer-events-none -translate-y-2 scale-95 opacity-0"
                     }`}
+                    style={{
+                      transitionDelay: isPaletteOpen
+                        ? "0ms"
+                        : `${Math.max(0, options.length * DOT_STAGGER_MS - 90)}ms`,
+                    }}
                   >
-                    {options.map((option) => (
+                    {options.map((option, index) => (
                       <button
                         key={option.id}
                         type="button"
                         onClick={() => {
                           setAccent(option.id);
-                          setIsPaletteOpen(false);
+                          closePalette();
                         }}
-                        className={`h-5 w-5 rounded-full transition ${
+                        className={`h-5 w-5 rounded-full ${
+                          isPaletteOpen ? "theme-dot-enter" : "theme-dot-exit"
+                        } ${
                           option.id === accentId
                             ? "ring-2 ring-white ring-offset-1 ring-offset-black"
                             : "hover:scale-110"
                         }`}
-                        style={{ backgroundColor: option.value }}
+                        style={{
+                          backgroundColor: option.value,
+                          animationDelay: `${index * DOT_STAGGER_MS}ms`,
+                        }}
                         aria-label="Selecionar cor"
                       />
                     ))}
                   </div>
+                  )}
                 </div>
               );
             }
