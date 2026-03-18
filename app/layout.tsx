@@ -40,9 +40,33 @@ const ivyoraDisplay = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "COLORAU | Coro Misto",
+  metadataBase: new URL("https://colorau.art"),
+  title: "COLORAU",
   description:
-    "Site oficial do COLORAU, coletivo coral contemporaneo de Belo Horizonte. Quando vozes se encontram, algo acontece.",
+    "Site oficial do COLORAU, coletivo coral contemporâneo de Belo Horizonte.",
+  openGraph: {
+    type: "website",
+    url: "https://colorau.art",
+    siteName: "COLORAU",
+    title: "COLORAU",
+    description:
+      "Site oficial do COLORAU, coletivo coral contemporâneo de Belo Horizonte.",
+    images: [
+      {
+        url: "/Foto-113.jpg",
+        width: 1200,
+        height: 630,
+        alt: "COLORAU - coletivo coral contemporâneo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "COLORAU | Coro Misto",
+    description:
+      "Site oficial do COLORAU, coletivo coral contemporâneo de Belo Horizonte.",
+    images: ["/Foto-113.jpg"],
+  },
 };
 
 export default function RootLayout({
