@@ -1,22 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Reveal } from "@/components/reveal";
-import { repertoire } from "@/lib/site-data";
+import { coristaDocuments, repertoire } from "@/lib/site-data";
 import { FileText, Headphones, PlayCircle } from "lucide-react";
 
 export default function CoristaPage() {
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.sessionStorage.getItem("colorau-corista-access") === "yes";
+  });
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const stored = window.sessionStorage.getItem("colorau-corista-access");
-    if (stored === "yes") {
-      setIsAuthorized(true);
-    }
-  }, []);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -115,33 +110,39 @@ export default function CoristaPage() {
                     <h3 className="text-lg font-semibold">{music.title}</h3>
                     <p className="text-sm text-white/70">{music.artist}</p>
                     <div className="mt-4 flex flex-wrap gap-2 text-sm">
-                      <a
-                        className="inline-flex items-center gap-2 bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-110"
-                        href={music.driveUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <Headphones className="h-4 w-4" />
-                        Áudios por voz
-                      </a>
-                      <a
-                        className="inline-flex items-center gap-2 bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-110"
-                        href={music.scoreUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <FileText className="h-4 w-4" />
-                        Partitura em PDF
-                      </a>
-                      <a
-                        className="inline-flex items-center gap-2 bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-110"
-                        href={music.youtubeUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <PlayCircle className="h-4 w-4" />
-                        Vídeo de referência
-                      </a>
+                      {music.audioUrl && (
+                        <a
+                          className="inline-flex items-center gap-2 bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-110"
+                          href={music.audioUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <Headphones className="h-4 w-4" />
+                          Áudios por voz
+                        </a>
+                      )}
+                      {music.scoreUrl && (
+                        <a
+                          className="inline-flex items-center gap-2 bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-110"
+                          href={music.scoreUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <FileText className="h-4 w-4" />
+                          Partitura em PDF
+                        </a>
+                      )}
+                      {music.referenceUrl && (
+                        <a
+                          className="inline-flex items-center gap-2 bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-110"
+                          href={music.referenceUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <PlayCircle className="h-4 w-4" />
+                          Vídeo de referência
+                        </a>
+                      )}
                     </div>
                   </article>
                 ))}
@@ -152,17 +153,19 @@ export default function CoristaPage() {
               <h2 className="text-2xl font-semibold text-accent">
                 Documentos importantes
               </h2>
-              <p className="mt-4 text-sm text-black/75">
-                Reserve este espaço para PDFs e páginas internas com orientações do
-                coro (cronograma, termos, roteiros de ensaio, etc.).
-              </p>
               <div className="mt-5 space-y-3">
-                <div className="bg-black/5 p-4 text-sm text-black/75">
-                  Documento 01 – a adicionar
-                </div>
-                <div className="bg-black/5 p-4 text-sm text-black/75">
-                  Documento 02 – a adicionar
-                </div>
+                {coristaDocuments.map((doc) => (
+                  <a
+                    key={doc.url}
+                    href={doc.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex w-full items-center gap-2 bg-black/5 p-4 text-sm text-black/75 transition hover:bg-black/10"
+                  >
+                    <FileText className="h-4 w-4 shrink-0" />
+                    {doc.title}
+                  </a>
+                ))}
               </div>
             </div>
           </div>

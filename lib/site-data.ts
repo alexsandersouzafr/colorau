@@ -15,9 +15,7 @@ export const choirTeam = [
   "Produção cultural: Ina Duarte, Natália Tavares",
 ];
 
-const placeholderBio =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
-
+const placeholderBio = ""
 export const teamMembers = [
   {
     name: "Alexsander Souza",
@@ -102,83 +100,92 @@ export const achievements = [
   },
 ];
 
-export const repertoire = [
+export const repertoire: Array<{
+  title: string;
+  artist: string;
+  audioUrl?: string;
+  scoreUrl?: string;
+  referenceUrl?: string;
+}> = [
   {
     title: "Chiquilín de Bachín",
     artist: "Astor Piazzolla (arr. Liliane Cangiano)",
-    driveUrl: "https://drive.google.com/",
-    scoreUrl: "#",
-    youtubeUrl: "https://www.youtube.com/",
+    scoreUrl: "/scores/chiquilin.pdf",
+    referenceUrl: "https://youtu.be/R8U138BwJrY?si=KxV2CYt3HgVm6dhS",
   },
   {
     title: "Águas de Março",
     artist: "Tom Jobim (arr. Martínez Dávila)",
-    driveUrl: "https://drive.google.com/",
-    scoreUrl: "#",
-    youtubeUrl: "https://www.youtube.com/",
+    scoreUrl: "/scores/aguas-de-marco.pdf",
+    referenceUrl: "https://youtu.be/vRe1AGRyk94?si=0z7joP3Jz2F9XvS5",
   },
   {
     title: "Suíte dos Pescadores",
     artist: "Dorival Caymmi (arr. Damiano Cozzella)",
-    driveUrl: "https://drive.google.com/",
-    scoreUrl: "#",
-    youtubeUrl: "https://www.youtube.com/",
+    scoreUrl: "/scores/suite-dos-pescadores.pdf",
+    referenceUrl: "https://youtu.be/bsS5wRDA3hE?si=KKWTWlbsfviGK931",
   },
   {
     title: "Baião de Quatro Toques",
     artist: "Luiz Tatit, José Miguel Wisnik (arr. Manuel Figueiredo de Abreu)",
-    driveUrl: "https://drive.google.com/",
-    scoreUrl: "#",
-    youtubeUrl: "https://www.youtube.com/",
+    scoreUrl: "/scores/baiao.pdf",
+    referenceUrl: "https://youtu.be/uDeem9Qjmhk?si=GyFqZhxAhLp2HgTK",
   },
   {
     title: "Lua, Lua, Lua",
     artist: "Caetano Veloso (arr. Marcos Leite)",
-    driveUrl: "https://drive.google.com/",
-    scoreUrl: "#",
-    youtubeUrl: "https://www.youtube.com/",
+    scoreUrl: "/scores/lua-lua-lua.pdf",
+    referenceUrl: "https://youtu.be/NxpWF-jZUR4?si=Gnry3na1wv0u9hT7",
   },
   {
     title: "Suíte Nordestina: Morena Bonita",
     artist: "Ronaldo Miranda",
-    driveUrl: "https://drive.google.com/",
-    scoreUrl: "#",
-    youtubeUrl: "https://www.youtube.com/",
+    scoreUrl: "/scores/suite-nordestina.pdf",
+    referenceUrl: "https://youtu.be/9wPhqxuZstU?si=o8InKEpa7k6pcFSA",
   },
   {
     title: "Suíte Nordestina: Dendê Trapiá",
     artist: "Ronaldo Miranda",
-    driveUrl: "https://drive.google.com/",
-    scoreUrl: "#",
-    youtubeUrl: "https://www.youtube.com/",
+    scoreUrl: "/scores/suite-nordestina.pdf",
+    referenceUrl: "https://youtu.be/xKUWvKZIstA?si=zTBHh_DqgtT6fVhh",
   },
   {
     title: "Suíte Nordestina: Bumba Chora",
     artist: "Ronaldo Miranda",
-    driveUrl: "https://drive.google.com/",
-    scoreUrl: "#",
-    youtubeUrl: "https://www.youtube.com/",
+    scoreUrl: "/scores/suite-nordestina.pdf",
+    referenceUrl: "https://youtu.be/uktsBR4-3EA?si=pdyNQWWeUT-CrTVe",
   },
   {
     title: "Suíte Nordestina: Eu vou, Eu Vou",
     artist: "Ronaldo Miranda",
-    driveUrl: "https://drive.google.com/",
-    scoreUrl: "#",
-    youtubeUrl: "https://www.youtube.com/",
+    scoreUrl: "/scores/suite-nordestina.pdf",
+    referenceUrl: "https://youtu.be/fDy7b955maU?si=0NM-lYblOmkyP3Ng",
   },
   {
     title: "Bom Dia",
     artist: "Nana Caymmi, Gilberto Gil (arr. Pedro Veneziani)",
-    driveUrl: "https://drive.google.com/",
-    scoreUrl: "#",
-    youtubeUrl: "https://www.youtube.com/",
+    scoreUrl: "/scores/bom-dia.pdf",
+    referenceUrl: "https://youtu.be/zcNzaS8Vb4E?si=MwFJgGvKlQE2hDQM",
   },
   {
     title: "Domingo no Parque",
     artist: "Gilberto Gil (arr. Lindembergue Cardoso)",
-    driveUrl: "https://drive.google.com/",
-    scoreUrl: "#",
-    youtubeUrl: "https://www.youtube.com/",
+    scoreUrl: "/scores/domingo-no-parque.pdf",
+    referenceUrl: "https://youtu.be/AyaAUah97wo?si=672lU6L2O27lx4kZ",
+  },
+];
+
+export const coristaDocuments: Array<{
+  title: string;
+  url: string;
+}> = [
+  {
+    title: "Discurso dos Sons (PDF)",
+    url: "/docs/Discurso dos Sons.pdf",
+  },
+  {
+    title: "The Structures and movement of breathing (PDF)",
+    url: "/docs/The Structures and movement of breathing a primer for choirs and choruses.pdf",
   },
 ];
 
