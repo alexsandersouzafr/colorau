@@ -1,18 +1,47 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import { cn } from "@/lib/utils";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 
-const poppins = Poppins({
-  subsets: ["latin"],
+const dmSans = localFont({
+  variable: "--font-body",
+  src: [
+    {
+      path: "../public/DMSans-VariableFont_opsz,wght.ttf",
+      weight: "100 900",
+      style: "normal",
+    },
+    {
+      path: "../public/DMSans-Italic-VariableFont_opsz,wght.ttf",
+      weight: "100 900",
+      style: "italic",
+    },
+  ],
   display: "swap",
-  variable: "--font-poppins",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
+const ivyoraDisplay = localFont({
+  variable: "--font-subtitle",
+  src: [
+    {
+      path: "../public/IvyOraDisplay-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/IvyOraDisplay-RegularItalic.ttf",
+      weight: "400",
+      style: "italic",
+    },
+  ],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Colorau",
-  description: "Celebrando a diversidade através da música!",
+  title: "COLORAU | Coro Misto",
+  description:
+    "Site oficial do COLORAU, coletivo coral contemporaneo de Belo Horizonte. Quando vozes se encontram, algo acontece.",
 };
 
 export default function RootLayout({
@@ -21,12 +50,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={cn(poppins.variable, "flex h-screen flex-col")}>
-        <div className="h-32 w-full bg-[url('/capa.png')] bg-contain bg-repeat" />
-        <div className="w-full max-w-5xl flex-1 m-auto">{children}</div>
-        <div className="flex h-20 w-full items-center justify-center bg-colorau-azul bg-contain bg-repeat text-white">
-          Colorau 2024
+    <html lang="pt-BR">
+      <body className={`${dmSans.variable} ${ivyoraDisplay.variable} antialiased`}>
+        <div className="flex min-h-screen flex-col">
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
         </div>
       </body>
     </html>

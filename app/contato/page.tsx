@@ -1,0 +1,52 @@
+import { Reveal } from "@/components/reveal";
+
+export default function ContatoPage() {
+  return (
+    <div className="py-10 md:py-16">
+      <section className="container-width flex flex-col gap-8 md:gap-10">
+        <Reveal className="section-card p-0">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_140px]">
+            <div className="px-6 py-7 md:px-10 md:py-10">
+              <span className="pill bg-[#ff8c00] text-black">Contato</span>
+              <h1 className="mt-4 text-3xl font-semibold md:text-5xl">
+                Fale com o COLORAU
+              </h1>
+              <p className="mt-4 max-w-3xl text-black/75">
+                Para convites de apresentação, parcerias ou produção
+                cultural, entre em contato pelos canais oficiais.
+              </p>
+            </div>
+            <div
+              aria-hidden="true"
+              className="texture-panel texture-2 texture-orange hidden min-h-[200px] md:block"
+            />
+          </div>
+        </Reveal>
+
+        <Reveal className="grid gap-6 md:grid-cols-2">
+          <article className="section-card section-inverse">
+            <h2 className="text-xl font-semibold text-[#ff8c00]">Email</h2>
+            <a
+              href="mailto:coloraucontato@gmail.com"
+              className="mt-3 inline-block text-lg text-white hover:underline"
+            >
+              coloraucontato@gmail.com
+            </a>
+          </article>
+
+          <article className="section-card">
+            <h2 className="text-xl font-semibold text-[#ff8c00]">Instagram</h2>
+            <a
+              href="https://instagram.com/coloraumusica"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 inline-block text-lg text-[#ff8c00] hover:underline"
+            >
+              @coloraumusica
+            </a>
+          </article>
+        </Reveal>
+      </section>
+    </div>
+  );
+}

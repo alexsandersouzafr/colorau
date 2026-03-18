@@ -1,12 +1,164 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+:root {
+  --background: #f3f3f3;
+  --foreground: #090909;
+  --accent: #ff001c;
+  --accent-soft: #ffe300;
+  --surface: #ffffff;
+  --color-cyan: #00e0f0;
+  --color-orange: #ff8c00;
+  --color-violet: #5351fe;
+  --color-magenta: #ff61ff;
+  --color-green: #87ff2f;
+  --color-emerald: #008d69;
+  --color-deep-violet: #5900c3;
+  --color-soft-magenta: #ffb6ff;
+  --color-deep-emerald: #006054;
+  --color-gray: #8a8b8d;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-subtitle: var(--font-subtitle);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-surface: var(--surface);
+  --color-cyan: var(--color-cyan);
+  --color-orange: var(--color-orange);
+  --color-violet: var(--color-violet);
+  --color-magenta: var(--color-magenta);
+  --color-green: var(--color-green);
+  --color-emerald: var(--color-emerald);
+  --color-deep-violet: var(--color-deep-violet);
+  --color-soft-magenta: var(--color-soft-magenta);
+  --color-deep-emerald: var(--color-deep-emerald);
+  --color-gray: var(--color-gray);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+p,
+li,
+a,
+button,
+label,
+input,
+textarea {
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.subtitle-italic {
+  font-family: var(--font-subtitle), serif;
+  font-style: italic;
+  text-transform: lowercase;
+  letter-spacing: 0.01em;
+}
+
+.subtitle-uppercase {
+  font-family: var(--font-subtitle), serif;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.container-width {
+  @apply mx-auto w-full max-w-6xl px-4 md:px-8;
+}
+
+.section-card {
+  @apply bg-white px-6 py-7 md:px-10 md:py-10;
+}
+
+.section-inverse {
+  @apply bg-black text-white;
+}
+
+.pill {
+  @apply inline-flex bg-black/5 px-3 py-1 text-xs tracking-[0.12em] text-black/70 uppercase;
+}
+
+.texture-panel {
+  --texture-color: var(--color-deep-violet);
+  background-color: var(--texture-color);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: cover;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: cover;
+}
+
+.texture-1 {
+  -webkit-mask-image: url("/textura-1.svg");
+  mask-image: url("/textura-1.svg");
+}
+
+.texture-2 {
+  -webkit-mask-image: url("/textura-2.svg");
+  mask-image: url("/textura-2.svg");
+}
+
+.texture-3 {
+  -webkit-mask-image: url("/textura-3.svg");
+  mask-image: url("/textura-3.svg");
+}
+
+.texture-4 {
+  -webkit-mask-image: url("/textura-4.svg");
+  mask-image: url("/textura-4.svg");
+}
+
+.texture-red {
+  --texture-color: var(--accent);
+}
+
+.texture-violet {
+  --texture-color: var(--color-deep-violet);
+}
+
+.texture-cyan {
+  --texture-color: var(--color-cyan);
+}
+
+.texture-emerald {
+  --texture-color: var(--color-emerald);
+}
+
+.texture-magenta {
+  --texture-color: var(--color-magenta);
+}
+
+.texture-orange {
+  --texture-color: var(--color-orange);
+}
+
+.texture-soft-magenta {
+  --texture-color: var(--color-soft-magenta);
+}
+
+.texture-gray {
+  --texture-color: var(--color-gray);
 }
