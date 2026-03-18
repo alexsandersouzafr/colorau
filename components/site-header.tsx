@@ -41,13 +41,20 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 bg-black/85 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-6xl items-stretch px-4 py-4 text-white md:px-8">
-        <nav className="flex flex-wrap items-center gap-2 text-sm">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-4 text-white md:flex-row md:items-stretch md:gap-0 md:px-8">
+        <Link
+          href="/"
+          className="order-1 flex items-center justify-center text-white md:order-3 md:ml-auto md:justify-start"
+        >
+          <ColorauLogo className="h-8 w-auto md:h-10" />
+        </Link>
+
+        <nav className="order-2 flex flex-wrap items-center gap-2 text-xs md:order-1 md:text-sm">
           {orderedNavItems.map((item) => {
             const isActive = pathname === item.href;
             const isCorista = item.href === "/corista";
             const currentOption = options.find((option) => option.id === accentId);
-            const linkClass = `rounded-full px-3 py-2 transition ${
+            const linkClass = `rounded-full px-3 py-2 transition md:px-3 md:py-2 ${
               isCorista
                 ? "bg-accent text-accent-foreground hover:brightness-110"
                 : isActive
@@ -78,7 +85,7 @@ export function SiteHeader() {
                     />
                   </button>
                   <div
-                    className={`absolute right-0 top-[44px] z-50 flex items-center gap-2 bg-black/90 p-2 backdrop-blur transition-all duration-250 ease-out ${
+                    className={`absolute right-0 top-[44px] z-50 flex items-center gap-2 rounded-full bg-black/90 p-2 backdrop-blur transition-all duration-250 ease-out ${
                       isPaletteOpen
                         ? "translate-y-0 scale-100 opacity-100"
                         : "pointer-events-none -translate-y-2 scale-95 opacity-0"
@@ -114,7 +121,7 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden flex-1 items-center justify-center gap-4 px-4 md:flex">
+        <div className="order-2 hidden flex-1 items-center justify-center gap-4 px-4 md:flex">
           <div className="hidden h-[40px] flex-1 md:block">
             <div
               aria-hidden="true"
@@ -122,10 +129,6 @@ export function SiteHeader() {
             />
           </div>
         </div>
-
-        <Link href="/" className="ml-auto flex items-center text-white">
-          <ColorauLogo className="h-8 w-auto md:h-10" />
-        </Link>
       </div>
     </header>
   );
