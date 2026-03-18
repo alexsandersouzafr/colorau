@@ -1,13 +1,14 @@
 import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 import { TeamMemberCard } from "@/components/team-member-card";
-import { achievements, choirTeam, galleryPhotos, teamMembers } from "@/lib/site-data";
+import { achievements, galleryPhotos, teamMembers } from "@/lib/site-data";
 
 const roleOrder = [
-  "Direção",
+  "Direção Musical",
   "Preparação vocal",
   "Pianista",
-  "Produção executiva",
+  "Design e Produção executiva",
+  "Jurídico e Produção executiva",
   "Produção cultural",
 ];
 
@@ -69,9 +70,6 @@ export default function SobrePage() {
 
         <Reveal className="section-card section-inverse p-0">
           <div className="flex flex-col gap-10 px-6 py-7 md:px-10 md:py-10">
-            <p className="text-xs uppercase tracking-[0.14em] text-accent">
-              Equipe
-            </p>
             <h2 className="text-3xl font-semibold md:text-5xl">
               Quem faz o COLORAU acontecer
             </h2>
@@ -84,10 +82,7 @@ export default function SobrePage() {
                 if (members.length >= 2) {
                   return members.map((member) => (
                     <div key={`${role}-${member.name}`}>
-                      <h3 className="text-sm uppercase tracking-[0.14em] text-accent">
-                        {role}
-                      </h3>
-                      <div className="mt-4">
+                      <div>
                         <div className="md:hidden">
                           <article className="bg-white text-black">
                             <div className="grid grid-cols-[120px_1fr]">
@@ -134,10 +129,7 @@ export default function SobrePage() {
 
                 return [
                   <div key={role}>
-                    <h3 className="text-sm uppercase tracking-[0.14em] text-accent">
-                      {role}
-                    </h3>
-                    <div className="mt-4">
+                    <div>
                       <div className="md:hidden">
                         <article className="bg-white text-black">
                           <div className="grid grid-cols-[120px_1fr]">

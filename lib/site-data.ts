@@ -6,57 +6,48 @@ export const navItems = [
   { href: "/contato", label: "Contato" },
 ];
 
-export const choirTeam = [
-  "Direção geral e direção musical: Alexsander Souza",
-  "Direção cênica: Allane Machado",
-  "Preparação vocal: Laura de Assis",
-  "Correpentição: Ighor Bastos",
-  "Produção executiva: Rafaela Bueno, Laura Assis",
-  "Produção cultural: Ina Duarte, Natália Tavares",
-];
-
 const placeholderBio = ""
 export const teamMembers = [
   {
     name: "Alexsander Souza",
-    role: "Direção",
-    imageUrl: "/Foto-113.jpg",
+    role: "Direção Musical",
+    imageUrl: "/pessoas/alexsander.png",
     bio: placeholderBio,
   },
   {
     name: "Laura de Assis",
     role: "Preparação vocal",
-    imageUrl: "/Foto-13.jpg",
+    imageUrl: "/pessoas/laura.jpeg",
     bio: placeholderBio,
   },
   {
     name: "Ighor Bastos",
     role: "Pianista",
-    imageUrl: "/Foto-19.jpg",
+    imageUrl: "/pessoas/ighor.png",
     bio: placeholderBio,
   },
   {
     name: "Rafael Duarte",
-    role: "Produção executiva",
-    imageUrl: "/Foto-52.jpg",
+    role: "Design e Produção executiva",
+    imageUrl: "/pessoas/rafael.jpeg",
     bio: placeholderBio,
   },
   {
     name: "Rafaela Bueno",
-    role: "Produção executiva",
-    imageUrl: "/Foto-22.jpg",
+    role: "Jurídico e Produção executiva",
+    imageUrl: "/pessoas/rafaela.jpeg",
     bio: placeholderBio,
   },
   {
-    name: "Ina Duarte",
+    name: "Iná Duarte",
     role: "Produção cultural",
-    imageUrl: "/Foto-6.jpg",
+    imageUrl: "/pessoas/ina.png",
     bio: placeholderBio,
   },
   {
     name: "Natalia Tavares",
     role: "Produção cultural",
-    imageUrl: "/Foto-113.jpg",
+    imageUrl: "/pessoas/natalia.jpeg",
     bio: placeholderBio,
   },
 ];
