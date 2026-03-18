@@ -15,14 +15,14 @@ export function TeamMemberCard({ member }: { member: TeamMember }) {
   const hasBio = member.bio && member.bio.length > 0;
 
   return (
-    <article className="grid grid-cols-[110px_1fr] bg-white">
-      <div className="relative h-full min-h-[140px] bg-black/5">
+    <article className="grid grid-cols-[160px_1fr] bg-white">
+      <div className="relative h-full min-h-[160px] bg-black/5">
         <Image
           src={member.imageUrl}
           alt={`Foto de ${member.name}`}
           fill
           className="object-cover grayscale"
-          sizes="110px"
+          sizes="160px"
         />
       </div>
       <div className="flex min-w-0 flex-1 flex-col">
@@ -50,7 +50,7 @@ export function TeamMemberCard({ member }: { member: TeamMember }) {
               <button
                 type="button"
                 onClick={() => setIsExpanded((e) => !e)}
-                className="inline-flex shrink-0 items-center justify-center bg-[#87ff2f] px-4 py-2 text-sm font-semibold text-black transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-black/20"
+                className="inline-flex shrink-0 items-center justify-center bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-black/20"
                 aria-expanded={isExpanded}
                 aria-label={isExpanded ? "Recolher currículo" : "Expandir currículo"}
               >

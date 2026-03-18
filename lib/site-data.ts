@@ -2,7 +2,7 @@ export const navItems = [
   { href: "/", label: "Home" },
   { href: "/sobre", label: "O Colorau" },
   { href: "/galeria", label: "Galeria" },
-  { href: "/corista", label: "Acesso do Corista" },
+  { href: "/corista", label: "Área do Corista" },
   { href: "/contato", label: "Contato" },
 ];
 
@@ -38,15 +38,15 @@ export const teamMembers = [
     bio: placeholderBio,
   },
   {
-    name: "Rafaela Bueno",
+    name: "Rafael Duarte",
     role: "Produção executiva",
-    imageUrl: "/Foto-22.jpg",
+    imageUrl: "/Foto-52.jpg",
     bio: placeholderBio,
   },
   {
-    name: "Laura Assis",
+    name: "Rafaela Bueno",
     role: "Produção executiva",
-    imageUrl: "/Foto-52.jpg",
+    imageUrl: "/Foto-22.jpg",
     bio: placeholderBio,
   },
   {

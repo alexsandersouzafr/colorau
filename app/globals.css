@@ -3,7 +3,8 @@
 :root {
   --background: #f3f3f3;
   --foreground: #090909;
-  --accent: #ff001c;
+  --accent: #ff8c00;
+  --accent-foreground: #090909;
   --accent-soft: #ffe300;
   --surface: #ffffff;
   --color-cyan: #00e0f0;
@@ -101,64 +102,124 @@ textarea {
 }
 
 .texture-panel {
-  --texture-color: var(--color-deep-violet);
+  --texture-color: var(--accent);
+  --texture-size: cover;
+  --texture-rotate: 0deg;
+  --texture-zoom: 1;
+  --texture-scale-x: 1;
+  --texture-scale-y: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.texture-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-color: var(--texture-color);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
-  -webkit-mask-size: cover;
+  -webkit-mask-size: var(--texture-size);
   mask-repeat: no-repeat;
   mask-position: center;
-  mask-size: cover;
+  mask-size: var(--texture-size);
+  transform: rotate(var(--texture-rotate)) scale(var(--texture-zoom))
+    scaleX(var(--texture-scale-x)) scaleY(var(--texture-scale-y));
+  transform-origin: center;
+  will-change: transform;
 }
 
-.texture-1 {
+.texture-1::before {
   -webkit-mask-image: url("/textura-1.svg");
   mask-image: url("/textura-1.svg");
 }
 
-.texture-2 {
+.texture-2::before {
   -webkit-mask-image: url("/textura-2.svg");
   mask-image: url("/textura-2.svg");
 }
 
-.texture-3 {
+.texture-3::before {
   -webkit-mask-image: url("/textura-3.svg");
   mask-image: url("/textura-3.svg");
 }
 
-.texture-4 {
+.texture-4::before {
   -webkit-mask-image: url("/textura-4.svg");
   mask-image: url("/textura-4.svg");
 }
 
-.texture-red {
+.texture-background {
   --texture-color: var(--accent);
 }
 
-.texture-violet {
-  --texture-color: var(--color-deep-violet);
+.texture-foreground {
+  --texture-color: var(--accent-foreground);
 }
 
-.texture-cyan {
-  --texture-color: var(--color-cyan);
+.texture-black {
+  --texture-color: #000000;
 }
 
-.texture-emerald {
-  --texture-color: var(--color-emerald);
+.texture-fit-cover {
+  --texture-size: cover;
 }
 
-.texture-magenta {
-  --texture-color: var(--color-magenta);
+.texture-fit-stretch {
+  --texture-size: 100% 100%;
 }
 
-.texture-orange {
-  --texture-color: var(--color-orange);
+/* Texture rotation helpers */
+.texture-rotate-90 {
+  --texture-rotate: 90deg;
+  --texture-zoom: 1.42;
 }
 
-.texture-soft-magenta {
-  --texture-color: var(--color-soft-magenta);
+.texture-rotate-180 {
+  --texture-rotate: 180deg;
+  --texture-zoom: 1.42;
 }
 
-.texture-gray {
-  --texture-color: var(--color-gray);
+.texture-rotate-270 {
+  --texture-rotate: 270deg;
+  --texture-zoom: 1.42;
+}
+
+.texture-flip-x {
+  --texture-scale-x: -1;
+}
+
+.texture-flip-y {
+  --texture-scale-y: -1;
+}
+
+/* Accent helpers (single-color theming) */
+.bg-accent {
+  background-color: var(--accent);
+}
+.text-accent {
+  color: var(--accent);
+}
+.text-accent-foreground {
+  color: var(--accent-foreground);
+}
+.outline-accent {
+  outline-color: var(--accent);
+}
+.border-accent {
+  border-color: var(--accent);
+}
+
+.text-spread {
+  display: block;
+  width: 100%;
+  text-align: justify;
+  text-align-last: justify;
+  text-justify: inter-word;
+}
+
+@media (min-width: 768px) {
+  .home-card-uniform {
+    height: 612px;
+  }
 }

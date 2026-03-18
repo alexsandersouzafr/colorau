@@ -39,11 +39,11 @@ export function HeroOrbs() {
     <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <div
         ref={firstOrb}
-        className="absolute -left-10 top-10 h-56 w-56 rounded-full bg-[#ff001c]/25 blur-3xl"
+        className="bg-accent absolute -left-10 top-10 h-56 w-56 rounded-full opacity-25 blur-3xl"
       />
       <div
         ref={secondOrb}
-        className="absolute -right-8 bottom-8 h-64 w-64 rounded-full bg-[#5351fe]/18 blur-3xl"
+        className="bg-accent absolute -right-8 bottom-8 h-64 w-64 rounded-full opacity-20 blur-3xl"
       />
     </div>
   );

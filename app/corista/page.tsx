@@ -36,7 +36,7 @@ export default function CoristaPage() {
       <div className="py-10 md:py-16">
         <section className="container-width">
           <Reveal className="section-card section-inverse max-w-xl">
-            <p className="text-xs uppercase tracking-[0.14em] text-[#ff61ff]">
+            <p className="text-xs uppercase tracking-[0.14em] text-accent">
               Área restrita
             </p>
             <h1 className="mt-4 text-3xl font-semibold md:text-4xl">
@@ -60,18 +60,18 @@ export default function CoristaPage() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="mt-2 w-full border border-white/15 bg-black/40 px-3 py-2 text-sm text-white outline-none placeholder:text-white/40 focus:border-[#ff61ff] focus:ring-1 focus:ring-[#ff61ff]"
+                  className="mt-2 w-full border border-white/15 bg-black/40 px-3 py-2 text-sm text-white outline-none placeholder:text-white/40 focus:border-accent focus:ring-1 focus:ring-accent"
                   autoComplete="off"
                 />
               </div>
               {error && (
-                <p className="text-sm text-[#ff8080]">
+                <p className="text-sm text-accent">
                   {error}
                 </p>
               )}
               <button
                 type="submit"
-                className="inline-flex items-center justify-center bg-[#ff61ff] px-5 py-2 text-sm font-semibold text-black hover:brightness-110"
+                className="inline-flex items-center justify-center bg-accent px-5 py-2 text-sm font-semibold text-accent-foreground hover:brightness-110"
               >
                 Entrar
               </button>
@@ -89,10 +89,10 @@ export default function CoristaPage() {
           <div className="grid grid-cols-1 md:grid-cols-[140px_1fr]">
             <div
               aria-hidden="true"
-              className="texture-panel texture-3 texture-magenta hidden min-h-[200px] md:block"
+              className="texture-panel texture-3 hidden min-h-[200px] md:block"
             />
             <div className="px-6 py-7 md:px-10 md:py-10">
-              <span className="pill bg-[#ff61ff] text-black">Área interna</span>
+              <span className="pill bg-accent text-accent-foreground">Área interna</span>
               <h1 className="mt-4 text-3xl font-semibold md:text-5xl">
                 Acesso do Corista
               </h1>
@@ -108,7 +108,7 @@ export default function CoristaPage() {
         <Reveal className="section-card section-inverse p-0">
           <div className="grid grid-cols-1 gap-8 px-6 py-7 md:grid-cols-2 md:px-10 md:py-10">
             <div>
-              <h2 className="text-2xl font-semibold text-[#ff61ff]">Repertório</h2>
+              <h2 className="text-2xl font-semibold text-accent">Repertório</h2>
               <div className="mt-5 space-y-4">
                 {repertoire.map((music) => (
                   <article key={music.title} className="bg-white/10 p-4 md:p-5">
@@ -116,7 +116,7 @@ export default function CoristaPage() {
                     <p className="text-sm text-white/70">{music.artist}</p>
                     <div className="mt-4 flex flex-wrap gap-2 text-sm">
                       <a
-                        className="inline-flex items-center gap-2 bg-[#ff61ff] px-4 py-2 text-sm font-semibold text-black hover:brightness-110"
+                        className="inline-flex items-center gap-2 bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-110"
                         href={music.driveUrl}
                         target="_blank"
                         rel="noreferrer"
@@ -125,7 +125,7 @@ export default function CoristaPage() {
                         Áudios por voz
                       </a>
                       <a
-                        className="inline-flex items-center gap-2 bg-[#ff61ff] px-4 py-2 text-sm font-semibold text-black hover:brightness-110"
+                        className="inline-flex items-center gap-2 bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-110"
                         href={music.scoreUrl}
                         target="_blank"
                         rel="noreferrer"
@@ -134,7 +134,7 @@ export default function CoristaPage() {
                         Partitura em PDF
                       </a>
                       <a
-                        className="inline-flex items-center gap-2 bg-[#ff61ff] px-4 py-2 text-sm font-semibold text-black hover:brightness-110"
+                        className="inline-flex items-center gap-2 bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-110"
                         href={music.youtubeUrl}
                         target="_blank"
                         rel="noreferrer"
@@ -149,7 +149,7 @@ export default function CoristaPage() {
             </div>
 
             <div className="bg-white px-6 py-7 md:px-8 md:py-8">
-              <h2 className="text-2xl font-semibold text-[#5900c3]">
+              <h2 className="text-2xl font-semibold text-accent">
                 Documentos importantes
               </h2>
               <p className="mt-4 text-sm text-black/75">

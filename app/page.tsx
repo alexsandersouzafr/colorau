@@ -10,97 +10,73 @@ export default function Home() {
     <div className="relative overflow-hidden py-10 md:py-16">
       <HeroOrbs />
       <section className="container-width flex flex-col gap-8 md:gap-10">
-        <div className="grid gap-0 md:grid-cols-[1fr_280px]">
-          <Reveal className="bg-[#ff8c00] px-6 py-7 text-white md:px-10 md:py-10">
-            <ColorauLogo className="mt-4 h-20 w-auto text-white md:h-32" />
-            <p className="subtitle-italic font-extralight mt-3 text-4xl tracking-[0.06em]">
-              Um coro de corpos plurais e sensíveis
-            </p>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg">
-              Colorau é um coletivo coral contemporâneo nascido em Belo Horizonte
-              a partir do desejo de retomar a música após o silêncio da pandemia.
-              Mais do que um coro, funciona como laboratório artístico onde
-              técnica e afeto coexistem.
-            </p>
-            <div className="mt-6 h-2 w-full max-w-xl bg-[#ff8c00]" />
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/sobre"
-                className="bg-black border border-white px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"
-              >
-                Conheça o Colorau
-              </Link>
-              <Link
-                href="/corista"
-                className="bg-[#ff8c00] px-6 py-3 text-sm font-semibold text-black transition hover:brightness-110"
-              >
-                Acesso do corista
-              </Link>
+        <Reveal className="grid items-stretch gap-6 md:grid-cols-2">
+          <article className="section-card h-full bg-accent p-0 text-accent-foreground overflow-hidden">
+            <div className="flex flex-col items-start justify-start px-6 py-7 md:px-8 md:py-8">
+              <ColorauLogo className="mt-4 h-20 w-auto text-current md:h-28" />
+              <p className="subtitle-italic mt-3 text-4xl font-extralight tracking-[0.06em]">
+                Um coro de corpos plurais e sensíveis
+              </p>
+              <p className="mt-5 text-base leading-relaxed text-accent-foreground/80 md:text-lg text-spread"></p>
+              <div className="mt-auto flex flex-wrap gap-3 pt-8">
+                <Link
+                  href="/sobre"
+                  className="bg-black  px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"
+                >
+                  Conheça o Colorau
+                </Link>
+              </div>
             </div>
-          </Reveal>
-          <div
-            aria-hidden="true"
-            className="texture-panel texture-1 texture-red hidden min-h-[320px] md:block"
-          />
-        </div>
+          </article>
 
-        <Reveal className="grid gap-3 md:grid-cols-3">
-          {galleryPhotos.slice(0, 3).map((photo, index) => (
-            <div
-              key={`${photo}-${index}`}
-              className="relative aspect-16/10"
-            >
+          <article className="section-card h-full min-h-[320px] bg-accent p-2 overflow-hidden md:min-h-[420px]">
+            <div className="relative h-full w-full">
               <Image
-                src={photo}
-                alt={`Foto de destaque ${index + 1} do COLORAU`}
+                src={galleryPhotos[4]}
+                alt="Foto da galeria 1 do COLORAU"
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-          ))}
-        </Reveal>
+          </article>
 
-        <Reveal className="grid gap-6 md:grid-cols-2">
-          <article className="section-card p-0 outline-[6px] outline-[#ff8c00]">
+          <article className="section-card h-full bg-accent p-0 text-black outline-accent">
             <div
               aria-hidden="true"
-              className="texture-panel texture-1 texture-orange h-10 md:h-12"
+              className="texture-panel texture-4 texture-flip-y texture-black h-10 md:h-60"
             />
             <div className="px-6 py-7 md:px-8 md:py-8">
-              <h2 className="text-4xl font-semibold text-[#ff8c00]">
+              <h2 className="text-4xl font-semibold text-black">
                 Audições temporada 2026
               </h2>
-              <p className="mt-4 text-black/75">
-                Inscrições até 28 de março de 2026.
+              <p className="mt-4 text-spread text-black">
+                Inscrições até 28 de março
               </p>
-              <ul className="mt-5 space-y-2 text-sm text-black/75">
-                <li>- Audições: 30/03 e 01/04, às 18h30 (ordem de chegada)</li>
-                <li>
-                  - Local: Av. dos Andradas, 2287, sala 1406, Santa Efigênia
-                </li>
-                <li>
-                  - Ensaios: segundas, 18h30–21h, de 06/04 a 26/10 no Ed. Maletta
-                </li>
-              </ul>
+              <p className="mt-4 text-spread text-black">
+                Audições 30/03 e 01/04
+              </p>
+              <p className="mt-4 text-spread text-black">
+                Ensaios segundas 18h30 21h
+              </p>
               <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSfyA1tVd6ykYyY_CpAnw82rvyKGU-4Oq_jkT6d96BC-JWRgug/viewform"
                 target="_blank"
                 rel="noreferrer"
-                className="mt-6 inline-flex bg-[#ff8c00] px-5 py-2.5 text-sm font-semibold text-[#111111] transition hover:brightness-110"
+                className="mt-6 inline-flex bg-black px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-110"
               >
                 Quero me inscrever
               </a>
             </div>
           </article>
 
-          <article className="section-card p-0">
+          <article className="section-card h-full p-0">
             <div className="px-6 py-7 md:px-8 md:py-8">
-              <h2 className="text-2xl font-semibold text-[#ff8c00]">Agenda 2026</h2>
+              <h2 className="text-4xl font-semibold text-black">Agenda 2026</h2>
 
               <div className="mt-5 space-y-4">
                 <div className="bg-white p-4">
-                  <p className="text-xs uppercase tracking-[0.14em] text-[#ff8c00]">
+                  <p className="text-xs uppercase tracking-[0.14em] text-black">
                     Data a anunciar
                   </p>
                   <h3 className="mt-2 subtitle-italic text-5xl font-normal normal-case">
@@ -108,7 +84,7 @@ export default function Home() {
                   </h3>
                 </div>
                 <div className="bg-white p-4">
-                  <p className="text-xs uppercase tracking-[0.14em] text-[#ff8c00]">
+                  <p className="text-xs uppercase tracking-[0.14em] text-black">
                     Data a anunciar
                   </p>
                   <h3 className="mt-2 subtitle-italic text-5xl font-normal normal-case">
@@ -119,41 +95,56 @@ export default function Home() {
             </div>
             <div
               aria-hidden="true"
-              className="texture-panel texture-4 texture-orange h-10 md:h-12"
+              className="texture-panel texture-2 texture-black texture-flip-y texture-flip-x h-10 md:h-56"
             />
           </article>
-        </Reveal>
 
-        <Reveal className="section-card">
-          <h2 className="text-2xl font-semibold md:text-3xl">
-            A música começa no encontro.
-          </h2>
-          <p className="mt-4 max-w-4xl text-black/75">
-            No cenário cultural de Belo Horizonte, o Colorau ocupa um espaço
-            entre o rigor técnico da música coral e o calor popular da cultura
-            brasileira. A proposta artística integra música, corpo, cena e
-            presença coletiva.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3 text-sm">
-            <Link
-              className="bg-[#ff8c00] px-4 py-2 text-white hover:brightness-110"
-              href="/galeria"
-            >
-              Ver galeria
-            </Link>
-            <Link
-              className="bg-black/5 px-4 py-2 hover:bg-black/10"
-              href="/contato"
-            >
-              Entrar em contato
-            </Link>
-          </div>
-        </Reveal>
+          <article className="section-card h-full p-0 overflow-hidden">
+            <div className="flex h-full flex-col px-6 py-7 md:px-8 md:py-8">
+              <h2 className="text-2xl font-semibold md:text-3xl">
+                A música começa no encontro.
+              </h2>
+              <p className="mt-4 text-black/75">
+                O Colorau é um coletivo coral contemporâneo nascido em Belo
+                Horizonte a partir do desejo de retomar a música após o silêncio
+                da pandemia. Mais do que um coro, funciona como laboratório
+                artístico onde técnica e afeto coexistem.
+              </p>
+              <p className="mt-4 text-black/75">
+                No cenário cultural de Belo Horizonte, o Colorau ocupa um espaço
+                entre o rigor técnico da música coral e o calor popular da
+                cultura brasileira. A proposta artística integra música, corpo,
+                cena e presença coletiva.
+              </p>
+              <div className="mt-auto flex flex-wrap gap-3 pt-8 text-sm">
+                <Link
+                  className="bg-accent px-4 py-2 text-accent-foreground hover:brightness-110"
+                  href="/galeria"
+                >
+                  Ver galeria
+                </Link>
+                <Link
+                  className="bg-black/5 px-4 py-2 hover:bg-black/10"
+                  href="/contato"
+                >
+                  Entrar em contato
+                </Link>
+              </div>
+            </div>
+          </article>
 
-        <div
-          aria-hidden="true"
-          className="texture-panel texture-4 texture-orange h-52 md:h-72"
-        />
+          <article className="section-card h-full min-h-[320px] bg-accent p-2 overflow-hidden md:min-h-[420px]">
+            <div className="relative h-full w-full">
+              <Image
+                src={galleryPhotos[5]}
+                alt="Foto da galeria 2 do COLORAU"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </article>
+        </Reveal>
       </section>
     </div>
   );

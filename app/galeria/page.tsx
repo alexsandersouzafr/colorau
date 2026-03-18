@@ -9,7 +9,7 @@ export default function GaleriaPage() {
         <Reveal className="section-card section-inverse p-0">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_160px]">
             <div className="px-6 py-7 md:px-10 md:py-10">
-              <span className="pill bg-[#00e0f0] text-black">Galeria de fotos</span>
+              <span className="pill bg-accent text-accent-foreground">Galeria de fotos</span>
               <h1 className="mt-4 text-3xl font-semibold md:text-5xl">
                 Registros
               </h1>
@@ -20,7 +20,7 @@ export default function GaleriaPage() {
             </div>
             <div
               aria-hidden="true"
-              className="texture-panel texture-3 texture-cyan hidden min-h-[200px] md:block"
+              className="texture-panel texture-3 texture-background hidden min-h-[200px] md:block"
             />
           </div>
         </Reveal>

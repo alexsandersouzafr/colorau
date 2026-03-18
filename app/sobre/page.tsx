@@ -18,7 +18,7 @@ export default function SobrePage() {
         <Reveal className="section-card p-0 overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_280px]">
             <div className="px-6 py-7 md:px-10 md:py-10">
-              <span className="pill bg-[#5900c3] text-white">O Colorau</span>
+              <span className="pill bg-accent text-accent-foreground">O Colorau</span>
               <h1 className="mt-4 text-3xl font-semibold md:text-5xl">
                 O que é o COLORAU
               </h1>
@@ -47,13 +47,13 @@ export default function SobrePage() {
         </Reveal>
 
         <Reveal className="section-card section-inverse p-0">
-          <div className="grid grid-cols-1 md:grid-cols-[120px_1fr]">
+          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr]">
             <div
               aria-hidden="true"
-              className="texture-panel texture-4 texture-soft-magenta hidden min-h-[200px] md:block"
+              className="texture-panel texture-4 texture-background hidden min-h-[200px] md:block"
             />
             <div className="px-6 py-7 md:px-10 md:py-10">
-              <h2 className="text-2xl font-semibold text-[#ffb6ff]">O que nos move</h2>
+              <h2 className="text-2xl font-semibold text-accent">O que nos move</h2>
               <p className="mt-4 text-white/80">
                 Cuidamos do som e uns dos outros: exigência e acolhimento no mesmo passo.
               </p>
@@ -69,7 +69,7 @@ export default function SobrePage() {
 
         <Reveal className="section-card section-inverse p-0">
           <div className="flex flex-col gap-10 px-6 py-7 md:px-10 md:py-10">
-            <p className="text-xs uppercase tracking-[0.14em] text-[#87ff2f]">
+            <p className="text-xs uppercase tracking-[0.14em] text-accent">
               Equipe
             </p>
             <h2 className="text-3xl font-semibold md:text-5xl">
@@ -84,7 +84,7 @@ export default function SobrePage() {
                 if (members.length >= 2) {
                   return members.map((member) => (
                     <div key={`${role}-${member.name}`}>
-                      <h3 className="text-sm uppercase tracking-[0.14em] text-[#87ff2f]">
+                      <h3 className="text-sm uppercase tracking-[0.14em] text-accent">
                         {role}
                       </h3>
                       <div className="mt-4">
@@ -96,7 +96,7 @@ export default function SobrePage() {
 
                 return [
                   <div key={role}>
-                    <h3 className="text-sm uppercase tracking-[0.14em] text-[#87ff2f]">
+                    <h3 className="text-sm uppercase tracking-[0.14em] text-accent">
                       {role}
                     </h3>
                     <div className="mt-4">
@@ -115,13 +115,13 @@ export default function SobrePage() {
         <Reveal className="section-card p-0">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_140px]">
             <div className="px-6 py-7 md:px-10 md:py-10">
-          <h2 className="text-2xl font-semibold text-[#5900c3]">
+          <h2 className="text-2xl font-semibold text-accent">
             Realizações em destaque
           </h2>
           <div className="mt-6 space-y-5">
             {achievements.map((period) => (
               <div key={period.year} className="bg-white p-4">
-                <p className="text-xs tracking-[0.14em] text-[#5900c3] uppercase">
+                <p className="text-xs tracking-[0.14em] text-accent uppercase">
                   {period.year}
                 </p>
                 <ul className="mt-2 space-y-2 text-sm text-black/75">
@@ -135,7 +135,7 @@ export default function SobrePage() {
             </div>
             <div
               aria-hidden="true"
-              className="texture-panel texture-2 texture-violet hidden min-h-[200px] md:block"
+              className="texture-panel texture-2 hidden min-h-[200px] md:block"
             />
           </div>
         </Reveal>
