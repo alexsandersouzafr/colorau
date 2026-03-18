@@ -5,21 +5,21 @@ export default function ContatoPage() {
   return (
     <div className="py-10 md:py-16">
       <section className="container-width flex flex-col gap-8 md:gap-10">
-        <Reveal className="section-card p-0">
+        <Reveal className="section-card bg-accent p-0 text-accent-foreground">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_280px]">
             <div className="px-6 py-7 md:px-10 md:py-10">
-              <span className="pill bg-accent text-accent-foreground">Contato</span>
+              <span className="bg-black px-2 py-1 text-xs uppercase text-accent">Contato</span>
               <h1 className="mt-4 text-3xl font-semibold md:text-5xl">
                 Fale com o COLORAU
               </h1>
-              <p className="mt-4 max-w-3xl text-black/75">
+              <p className="mt-4 max-w-3xl text-accent-foreground/75">
                 Para convites de apresentação, parcerias ou produção
                 cultural, entre em contato pelos canais oficiais.
               </p>
             </div>
             <div
               aria-hidden="true"
-              className="texture-panel texture-2 hidden min-h-[200px] md:block"
+              className="texture-panel texture-2 texture-black hidden min-h-[200px] md:block"
             />
           </div>
         </Reveal>

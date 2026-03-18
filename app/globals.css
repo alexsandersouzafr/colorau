@@ -3,7 +3,7 @@
 :root {
   --background: #f3f3f3;
   --foreground: #090909;
-  --accent: #ff8c00;
+  --accent: #ffffff;
   --accent-foreground: #090909;
   --accent-soft: #ffe300;
   --surface: #ffffff;
@@ -127,6 +127,7 @@ textarea {
     scaleX(var(--texture-scale-x)) scaleY(var(--texture-scale-y));
   transform-origin: center;
   will-change: transform;
+  transition: background-color 800ms ease;
 }
 
 .texture-1::before {
@@ -196,18 +197,23 @@ textarea {
 /* Accent helpers (single-color theming) */
 .bg-accent {
   background-color: var(--accent);
+  transition: background-color 800ms ease;
 }
 .text-accent {
   color: var(--accent);
+  transition: color 800ms ease;
 }
 .text-accent-foreground {
   color: var(--accent-foreground);
+  transition: color 800ms ease;
 }
 .outline-accent {
   outline-color: var(--accent);
+  transition: outline-color 800ms ease;
 }
 .border-accent {
   border-color: var(--accent);
+  transition: border-color 800ms ease;
 }
 
 .text-spread {

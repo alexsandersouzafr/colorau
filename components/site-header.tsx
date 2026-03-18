@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { navItems } from "@/lib/site-data";
 import { ColorauLogo } from "@/components/colorau-logo";
 import { useThemeAccent } from "@/components/theme-provider";
-import { Palette } from "lucide-react";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -47,6 +46,7 @@ export function SiteHeader() {
           {orderedNavItems.map((item) => {
             const isActive = pathname === item.href;
             const isCorista = item.href === "/corista";
+            const currentOption = options.find((option) => option.id === accentId);
             const linkClass = `rounded-full px-3 py-2 transition ${
               isCorista
                 ? "bg-accent text-accent-foreground hover:brightness-110"
@@ -72,7 +72,10 @@ export function SiteHeader() {
                     aria-expanded={isPaletteOpen}
                     aria-label="Abrir menu de cores"
                   >
-                    <Palette className="h-4 w-4" />
+                    <span
+                      className="h-4 w-4 rounded-full border border-white/40"
+                      style={{ backgroundColor: currentOption?.value ?? "#ffffff" }}
+                    />
                   </button>
                   <div
                     className={`absolute right-0 top-[44px] z-50 flex items-center gap-2 bg-black/90 p-2 backdrop-blur transition-all duration-250 ease-out ${
