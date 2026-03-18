@@ -110,30 +110,35 @@ export const repertoire: Array<{
   {
     title: "Chiquilín de Bachín",
     artist: "Astor Piazzolla (arr. Liliane Cangiano)",
+    audioUrl: "https://drive.google.com/drive/u/1/folders/12bQr_UCshi9MDaFCAbl_Np5t64uAzzy4",
     scoreUrl: "/scores/chiquilin.pdf",
     referenceUrl: "https://youtu.be/R8U138BwJrY?si=KxV2CYt3HgVm6dhS",
   },
   {
     title: "Águas de Março",
     artist: "Tom Jobim (arr. Martínez Dávila)",
+    audioUrl: "https://drive.google.com/drive/u/1/folders/1xzoEccjJtHEGnzZMO-u_7wTav80QIMyB",
     scoreUrl: "/scores/aguas-de-marco.pdf",
     referenceUrl: "https://youtu.be/vRe1AGRyk94?si=0z7joP3Jz2F9XvS5",
   },
   {
     title: "Suíte dos Pescadores",
     artist: "Dorival Caymmi (arr. Damiano Cozzella)",
+    audioUrl: "https://drive.google.com/drive/u/1/folders/157c7qqoAOfQiSS2Ayr87NqkEh8N00pWr",
     scoreUrl: "/scores/suite-dos-pescadores.pdf",
     referenceUrl: "https://youtu.be/bsS5wRDA3hE?si=KKWTWlbsfviGK931",
   },
   {
     title: "Baião de Quatro Toques",
     artist: "Luiz Tatit, José Miguel Wisnik (arr. Manuel Figueiredo de Abreu)",
+    audioUrl: "https://drive.google.com/drive/u/1/folders/1wtzXygIKaYhqfufMXyZo8LZDhn5qIdCs",
     scoreUrl: "/scores/baiao.pdf",
     referenceUrl: "https://youtu.be/uDeem9Qjmhk?si=GyFqZhxAhLp2HgTK",
   },
   {
     title: "Lua, Lua, Lua",
     artist: "Caetano Veloso (arr. Marcos Leite)",
+    audioUrl: "https://drive.google.com/drive/u/1/folders/1Sn3zLZcXUBvZ97mAp5sq5ZQoqI0vQRgJ",
     scoreUrl: "/scores/lua-lua-lua.pdf",
     referenceUrl: "https://youtu.be/NxpWF-jZUR4?si=Gnry3na1wv0u9hT7",
   },
@@ -152,6 +157,7 @@ export const repertoire: Array<{
   {
     title: "Suíte Nordestina: Bumba Chora",
     artist: "Ronaldo Miranda",
+    audioUrl: "https://drive.google.com/drive/u/1/folders/12OZ42HSfrUV3xsD_NwWy-kewF3Vrt3-a",
     scoreUrl: "/scores/suite-nordestina.pdf",
     referenceUrl: "https://youtu.be/uktsBR4-3EA?si=pdyNQWWeUT-CrTVe",
   },
