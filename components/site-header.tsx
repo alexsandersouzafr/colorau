@@ -12,7 +12,7 @@ export function SiteHeader() {
   const DOT_ENTER_MS = 240;
   const CLOSE_BUFFER_MS = 80;
   const pathname = usePathname();
-  const { accentId, options, setAccent } = useThemeAccent();
+  const { accentId, options, setAccent, isLocked, setLocked } = useThemeAccent();
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
   const [isPaletteMounted, setIsPaletteMounted] = useState(false);
   const paletteRef = useRef<HTMLDivElement | null>(null);
@@ -100,18 +100,58 @@ export function SiteHeader() {
                   <Link href={item.href} className={linkClass}>
                     {item.label}
                   </Link>
-                  <button
-                    type="button"
-                    onClick={() => (isPaletteOpen ? closePalette() : openPalette())}
-                    className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
-                    aria-expanded={isPaletteOpen}
-                    aria-label="Abrir menu de cores"
-                  >
-                    <span
-                      className="h-4 w-4 rounded-full border border-white/40"
-                      style={{ backgroundColor: currentOption?.value ?? "#ffffff" }}
-                    />
-                  </button>
+
+                  <div className="flex items-center gap-2 rounded-full bg-white/10 p-1">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        isPaletteOpen ? closePalette() : openPalette()
+                      }
+                      className="flex h-[38px] w-[38px] items-center justify-center rounded-full text-white transition hover:bg-white/20"
+                      aria-expanded={isPaletteOpen}
+                      aria-label="Abrir menu de cores"
+                    >
+                      <span
+                        className="h-4 w-4 rounded-full border border-white/40"
+                        style={{
+                          backgroundColor: currentOption?.value ?? "#ffffff",
+                        }}
+                      />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setLocked(!isLocked);
+                        closePalette();
+                      }}
+                      className={`flex h-[38px] w-[38px] items-center justify-center rounded-full transition ${
+                        isLocked
+                          ? "bg-accent text-accent-foreground"
+                          : "bg-white/10 text-white hover:bg-white/20"
+                      }`}
+                      aria-label={
+                        isLocked
+                          ? "Destravar mudanças de cor"
+                          : "Travar mudanças de cor"
+                      }
+                      aria-pressed={isLocked}
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="h-4 w-4"
+                        aria-hidden="true"
+                      >
+                        <path d="M17 11V7a5 5 0 0 0-10 0v4" />
+                        <rect x="3" y="11" width="18" height="10" rx="2" />
+                      </svg>
+                    </button>
+                  </div>
                   {isPaletteMounted && (
                   <div
                     className={`absolute left-1/2 top-[44px] z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 items-center gap-2 rounded-full bg-black/90 p-2 backdrop-blur transition-all duration-180 ease md:max-w-none ${

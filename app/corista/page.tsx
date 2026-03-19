@@ -55,7 +55,7 @@ export default function CoristaPage() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="mt-2 w-full border border-white/15 bg-black/40 px-3 py-2 text-sm text-white outline-none placeholder:text-white/40 focus:border-accent focus:ring-1 focus:ring-accent"
+                  className="mt-2 w-full border border-black/10 bg-white px-3 py-2 text-sm text-black outline-none placeholder:text-black/40 focus:border-accent focus:ring-1 focus:ring-accent"
                   autoComplete="off"
                 />
               </div>

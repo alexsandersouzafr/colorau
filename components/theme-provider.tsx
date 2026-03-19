@@ -5,8 +5,10 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from "react";
+import { usePathname } from "next/navigation";
 
 export type AccentId =
   | "red"
@@ -17,9 +19,7 @@ export type AccentId =
   | "green"
   | "cyan"
   | "emerald"
-  | "deep-violet"
-  | "soft-magenta"
-  | "deep-emerald";
+  | "soft-magenta";
 
 type AccentOption = {
   id: AccentId;
@@ -37,26 +37,35 @@ const ACCENT_OPTIONS: AccentOption[] = [
   { id: "cyan", label: "Ciano", value: "#00e0f0" },
   { id: "emerald", label: "Esmeralda", value: "#008d69" },
   {
-    id: "deep-violet",
-    label: "Violeta profundo",
-    value: "#5900c3",
-  },
-  {
     id: "soft-magenta",
     label: "Magenta suave",
     value: "#ffb6ff",
   },
-  {
-    id: "deep-emerald",
-    label: "Esmeralda profunda",
-    value: "#006054",
-  },
 ];
+
+const STORAGE_ACCENT_ID = "colorau-accent-id";
+const STORAGE_LOCKED = "colorau-accent-locked";
+
+function isValidAccentId(value: string | null): value is AccentId {
+  if (!value) return false;
+  return ACCENT_OPTIONS.some((opt) => opt.id === value);
+}
+
+function chooseRandomAccentId(exclude?: AccentId): AccentId {
+  const candidates = exclude
+    ? ACCENT_OPTIONS.filter((opt) => opt.id !== exclude)
+    : ACCENT_OPTIONS;
+  const safeCandidates = candidates.length ? candidates : ACCENT_OPTIONS;
+  const idx = Math.floor(Math.random() * safeCandidates.length);
+  return safeCandidates[idx]!.id;
+}
 
 type ThemeContextValue = {
   accentId: AccentId;
   options: AccentOption[];
   setAccent: (id: AccentId) => void;
+  isLocked: boolean;
+  setLocked: (locked: boolean) => void;
 };
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
@@ -102,29 +111,114 @@ function applyAccent(option: AccentOption) {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [accentId, setAccentId] = useState<AccentId>("orange");
+  const pathname = usePathname();
+  const lastAppliedPathnameRef = useRef(pathname);
+  const isLockedRef = useRef(false);
+
+  const [isLocked, setIsLocked] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    try {
+      return window.localStorage.getItem(STORAGE_LOCKED) === "yes";
+    } catch {
+      return false;
+    }
+  });
+
+  // Keep refs in sync for scheduled callbacks.
+  useEffect(() => {
+    isLockedRef.current = isLocked;
+  }, [isLocked]);
+
+  const [accentId, setAccentId] = useState<AccentId>(() => {
+    if (typeof window === "undefined") return "orange";
+    try {
+      const lockedFromStorage =
+        window.localStorage.getItem(STORAGE_LOCKED) === "yes";
+      const storedAccentId = window.localStorage.getItem(STORAGE_ACCENT_ID);
+      if (lockedFromStorage && isValidAccentId(storedAccentId)) {
+        return storedAccentId;
+      }
+    } catch {
+      // ignore storage failures
+    }
+    return chooseRandomAccentId();
+  });
+
+  const persistAccent = useCallback((id: AccentId) => {
+    try {
+      window.localStorage.setItem(STORAGE_ACCENT_ID, id);
+    } catch {
+      // ignore storage failures
+    }
+  }, []);
+
+  const persistLocked = useCallback((locked: boolean) => {
+    try {
+      window.localStorage.setItem(STORAGE_LOCKED, locked ? "yes" : "no");
+    } catch {
+      // ignore storage failures
+    }
+  }, []);
+
+  // Apply the current accent to CSS variables / favicon on mount + changes.
+  useEffect(() => {
+    const option = ACCENT_OPTIONS.find((opt) => opt.id === accentId);
+    if (!option) return;
+    applyAccent(option);
+
+    // Keep localStorage aligned with the current state.
+    persistAccent(accentId);
+    persistLocked(isLocked);
+  }, [accentId, isLocked, persistAccent, persistLocked]);
+
+  const setAccent = useCallback(
+    (id: AccentId) => {
+      const option = ACCENT_OPTIONS.find((opt) => opt.id === id);
+      if (!option) return;
+      setAccentId(id);
+      applyAccent(option);
+      persistAccent(id);
+    },
+    [persistAccent]
+  );
+
+  const setLocked = useCallback(
+    (locked: boolean) => {
+      setIsLocked(locked);
+      persistLocked(locked);
+    },
+    [persistLocked]
+  );
 
   useEffect(() => {
-    const randomId =
-      ACCENT_OPTIONS[Math.floor(Math.random() * ACCENT_OPTIONS.length)].id;
-    const initial = randomId;
+    if (lastAppliedPathnameRef.current === pathname) return;
 
-    const option = ACCENT_OPTIONS.find((opt) => opt.id === initial)!;
-    setAccentId(initial);
-    applyAccent(option);
-  }, []);
+    // Move the ref first so quick successive route changes don't double-apply.
+    lastAppliedPathnameRef.current = pathname;
 
-  const setAccent = useCallback((id: AccentId) => {
-    const option = ACCENT_OPTIONS.find((opt) => opt.id === id);
-    if (!option) return;
-    setAccentId(id);
-    applyAccent(option);
-  }, []);
+    if (isLocked) return;
+
+    const scheduledPathname = pathname;
+    const nextAccentId = chooseRandomAccentId(accentId);
+    const schedule =
+      typeof queueMicrotask === "function"
+        ? queueMicrotask
+        : (cb: () => void) => setTimeout(cb, 0);
+
+    // Avoid updating state synchronously inside an effect.
+    schedule(() => {
+      if (lastAppliedPathnameRef.current !== scheduledPathname) return;
+      if (isLockedRef.current) return;
+      setAccent(nextAccentId);
+    });
+  }, [accentId, isLocked, pathname, setAccent]);
 
   const value: ThemeContextValue = {
     accentId,
     options: ACCENT_OPTIONS,
     setAccent,
+    isLocked,
+    setLocked,
   };
 
   return (
