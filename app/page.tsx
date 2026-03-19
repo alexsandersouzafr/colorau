@@ -50,15 +50,20 @@ export default function Home() {
               <h2 className="text-4xl font-semibold text-black">
                 Audições temporada 2026
               </h2>
-              <p className="mt-4 text-spread text-black">
-                Inscrições até 28 de março
-              </p>
-              <p className="mt-4 text-spread text-black">
-                Audições 30/03 e 01/04
-              </p>
-              <p className="mt-4 text-spread text-black">
-                Ensaios segundas 18h30 21h
-              </p>
+              <div className="mt-5 space-y-3 text-sm text-black uppercase md:text-base">
+                <div className="grid grid-cols-[1fr_auto] items-start gap-4">
+                  <span className="uppercase tracking-[0.08em]">Inscrições</span>
+                  <span className="text-right font-bold italic">Até 28/3</span>
+                </div>
+                <div className="grid grid-cols-[1fr_auto] items-start gap-4">
+                  <span className="uppercase tracking-[0.08em]">Audições</span>
+                  <span className="text-right font-bold italic">30/03 e 01/04</span>
+                </div>
+                <div className="grid grid-cols-[1fr_auto] items-start gap-4">
+                  <span className="uppercase tracking-[0.08em]">Ensaios</span>
+                  <span className="text-right font-bold italic">Segundas 18h30-21h</span>
+                </div>
+              </div>
               <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSfyA1tVd6ykYyY_CpAnw82rvyKGU-4Oq_jkT6d96BC-JWRgug/viewform"
                 target="_blank"
@@ -70,7 +75,7 @@ export default function Home() {
             </div>
           </article>
 
-          <article className="section-card h-full p-0">
+          <article className="section-card h-full p-0 overflow-hidden">
             <div className="px-6 py-7 md:px-8 md:py-8">
               <h2 className="text-4xl font-semibold text-black">Agenda 2026</h2>
 
@@ -95,7 +100,7 @@ export default function Home() {
             </div>
             <div
               aria-hidden="true"
-              className="texture-panel texture-2 texture-black texture-flip-y texture-flip-x h-10 md:h-56"
+                className="texture-panel texture-2 texture-black texture-flip-y texture-flip-x h-10 md:h-56"
             />
           </article>
 
