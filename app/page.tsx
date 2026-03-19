@@ -88,24 +88,26 @@ export default function Home() {
             />
           </article>
 
-          <article className="section-card h-full p-0 overflow-hidden">
+          <article className="section-card-agenda h-full p-0 overflow-hidden">
             <div className="px-6 py-7 md:px-8 md:py-8">
-              <h2 className="text-4xl font-semibold text-black">Agenda 2026</h2>
+              <h2 className="text-4xl font-semibold text-accent">
+                Agenda 2026
+              </h2>
 
               <div className="mt-5 space-y-4">
-                <div className="bg-white p-4">
-                  <p className="text-xs uppercase tracking-[0.14em] text-black">
+                <div className="p-4">
+                  <p className="text-xs uppercase tracking-[0.14em] text-accent">
                     Data a anunciar
                   </p>
-                  <h3 className="mt-2 subtitle-italic text-5xl font-normal normal-case">
+                  <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case">
                     MAIS COLORAU!
                   </h3>
                 </div>
-                <div className="bg-white p-4">
-                  <p className="text-xs uppercase tracking-[0.14em] text-black">
+                <div className="p-4">
+                  <p className="text-xs uppercase tracking-[0.14em] text-accent">
                     Data a anunciar
                   </p>
-                  <h3 className="mt-2 subtitle-italic text-5xl font-normal normal-case">
+                  <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case">
                     Dendê Trapiá
                   </h3>
                 </div>
@@ -113,7 +115,7 @@ export default function Home() {
             </div>
             <div
               aria-hidden="true"
-                className="texture-panel texture-2 texture-black texture-flip-y texture-flip-x h-10 md:h-56"
+                className="texture-panel texture-2 texture-background h-10 md:h-56"
             />
           </article>
 

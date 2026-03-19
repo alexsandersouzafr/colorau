@@ -55,9 +55,12 @@ function chooseRandomAccentId(exclude?: AccentId): AccentId {
   const candidates = exclude
     ? ACCENT_OPTIONS.filter((opt) => opt.id !== exclude)
     : ACCENT_OPTIONS;
-  const safeCandidates = candidates.length ? candidates : ACCENT_OPTIONS;
-  const idx = Math.floor(Math.random() * safeCandidates.length);
-  return safeCandidates[idx]!.id;
+  // Palette rule: avoid grayscale tones.
+  const nonGrayCandidates = candidates.filter((opt) => !isGrayscaleAccentOption(opt));
+  const safeCandidates = nonGrayCandidates.length ? nonGrayCandidates : candidates;
+  const finalCandidates = safeCandidates.length ? safeCandidates : ACCENT_OPTIONS;
+  const idx = Math.floor(Math.random() * finalCandidates.length);
+  return finalCandidates[idx]!.id;
 }
 
 type ThemeContextValue = {
@@ -81,8 +84,11 @@ const ICON_PATHS = [
 
 function applyFavicon(accentColor: string) {
   if (typeof document === "undefined") return;
-  const paths = ICON_PATHS.map((d) => `<path d="${d}" fill="#08100F"/>`).join("");
-  const svg = `<svg width="284" height="284" viewBox="0 0 284 284" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="142" cy="142" r="142" fill="${accentColor}"/>${paths}</svg>`;
+  // Keep `accentColor` in signature (used by callers), but the new favicon design is fixed SVG.
+  void accentColor;
+  // Avoid unused const issues if lint rules are strict.
+  void ICON_PATHS;
+  const svg = `<svg width="284" height="284" viewBox="0 0 284 284" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="142" cy="142" r="142" fill="#08100F"/><path d="M160.63 63.6956C160.63 57.4783 156.109 55.2174 144.239 55.2174C136.891 55.2174 135.196 61.4348 135.196 71.3261V205.283C135.196 225.63 141.13 228.739 146.782 228.739C154.13 228.739 156.956 218 157.522 199.913L158.369 166.565H162.326L163.174 200.761C163.739 227.609 155.543 247.957 138.587 247.957C122.478 247.957 114 239.196 114 214.891V74.1522C114 46.4565 127.848 36 144.239 36C158.935 36 166 44.7609 166 62.2826C166 76.6956 165.435 96.4783 160.348 125.022H138.869C158.652 82.6304 160.63 71.6087 160.63 63.6956Z" fill="white"/></svg>`;
   const href = `data:image/svg+xml,${encodeURIComponent(svg)}`;
   const head = document.head;
 
@@ -121,6 +127,97 @@ function hexToRgbTriplet(hex: string): string | null {
   return null;
 }
 
+function hexToRgbNumbers(hex: string): { r: number; g: number; b: number } | null {
+  const triplet = hexToRgbTriplet(hex);
+  if (!triplet) return null;
+  const [r, g, b] = triplet.split(",").map((v) => Number(v.trim()));
+  if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) return null;
+  return { r, g, b };
+}
+
+function isGrayscaleRgb(rgb: { r: number; g: number; b: number }, tolerance = 8) {
+  // Grayscale: componentes praticamente iguais (ex.: #8a8b8d).
+  return (
+    Math.abs(rgb.r - rgb.g) <= tolerance &&
+    Math.abs(rgb.g - rgb.b) <= tolerance &&
+    Math.abs(rgb.r - rgb.b) <= tolerance
+  );
+}
+
+function isGrayscaleAccentOption(opt: AccentOption) {
+  const rgb = hexToRgbNumbers(opt.value);
+  if (!rgb) return false;
+  return isGrayscaleRgb(rgb);
+}
+
+function chooseAgendaBackground(exclude: AccentId) {
+  const accentOption = ACCENT_OPTIONS.find((o) => o.id === exclude);
+  const accentRgb = accentOption ? hexToRgbNumbers(accentOption.value) : null;
+
+  // Overrides: hex direto quando a cor não está em ACCENT_OPTIONS (ex.: deep violet #5900c3).
+  const PAIRS_HEX: Partial<Record<AccentId, string>> = {
+    red: "#ffb6ff", // orange
+    magenta: "#5900c3", // deep violet
+    green: "#008d69", // emerald
+    cyan: "#5900c3", // deep violet
+  };
+
+  const overrideHex = PAIRS_HEX[exclude];
+  if (overrideHex) {
+    return { id: exclude, label: "", value: overrideHex };
+  }
+
+  // Curated pairs: background da home "Agenda 2026" para cada cor do tema.
+  const PAIRS: Partial<Record<AccentId, AccentId>> = {
+    yellow: "violet",
+    orange: "violet",
+    violet: "yellow",
+    emerald: "soft-magenta",
+    "soft-magenta": "emerald",
+  };
+
+  const pairedId = PAIRS[exclude];
+  if (pairedId && pairedId !== exclude) {
+    const pairedOption = ACCENT_OPTIONS.find((o) => o.id === pairedId);
+    if (pairedOption && !isGrayscaleAccentOption(pairedOption)) return pairedOption;
+  }
+
+  // Score by RGB distance: guarantees selecting an actually "other" color
+  // from the palette, not just a slightly different shade.
+  const distanceScore = (candidate: { r: number; g: number; b: number }) => {
+    if (!accentRgb) return 0;
+    const dr = candidate.r - accentRgb.r;
+    const dg = candidate.g - accentRgb.g;
+    const db = candidate.b - accentRgb.b;
+    return dr * dr + dg * dg + db * db;
+  };
+
+  let best: AccentOption | null = null;
+  let bestScore = -Infinity;
+
+  for (const opt of ACCENT_OPTIONS) {
+    if (opt.id === exclude) continue;
+    // Palette rule: never use grayscale backgrounds.
+    if (isGrayscaleAccentOption(opt)) continue;
+    const rgb = hexToRgbNumbers(opt.value);
+    if (!rgb) continue;
+    const score = distanceScore(rgb);
+    if (score > bestScore) {
+      bestScore = score;
+      best = opt;
+    }
+  }
+
+  // Fallback: prefer non-grayscale candidates; only if impossible, allow grayscale.
+  if (best) return best;
+  const nonGrayFallback = ACCENT_OPTIONS.find(
+    (o) => o.id !== exclude && !isGrayscaleAccentOption(o)
+  );
+  return (
+    nonGrayFallback ?? ACCENT_OPTIONS.find((o) => o.id !== exclude) ?? ACCENT_OPTIONS[0]!
+  );
+}
+
 function applyAccent(option: AccentOption) {
   if (typeof document === "undefined") return;
   const root = document.documentElement;
@@ -128,6 +225,11 @@ function applyAccent(option: AccentOption) {
   root.style.setProperty("--accent-foreground", "#090909");
   const accentRgb = hexToRgbTriplet(option.value);
   if (accentRgb) root.style.setProperty("--accent-rgb", accentRgb);
+
+  // Background of the "Agenda 2026" container must be a different palette color.
+  const agendaBg = chooseAgendaBackground(option.id);
+  root.style.setProperty("--agenda-bg", agendaBg.value);
+
   applyFavicon(option.value);
 }
 
