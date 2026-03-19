@@ -38,7 +38,8 @@ export function Reveal({ children, className, textStagger = true }: RevealProps)
       timeline = gsap.timeline({
         scrollTrigger: {
           trigger: element,
-          start: "top 84%",
+          // Earlier reveal so it doesn't feel late with smooth scroll engines.
+          start: "top 80%",
           end: "bottom top",
           toggleActions: "play reverse play reverse",
         },

@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 import { TeamMemberCard } from "@/components/team-member-card";
-import { achievements, galleryPhotos, teamMembers } from "@/lib/site-data";
+import { achievements, teamMembers } from "@/lib/site-data";
+import { getGalleryPhotos } from "@/lib/get-gallery-photos.server";
+
+export const dynamic = "force-dynamic";
 
 const roleOrder = [
   "Direção Musical",
@@ -13,6 +16,9 @@ const roleOrder = [
 ];
 
 export default function SobrePage() {
+  const galleryPhotos = getGalleryPhotos();
+  const heroPhoto = galleryPhotos[0] ?? "/file.svg";
+
   return (
     <div className="py-10 md:py-16">
       <section className="container-width flex flex-col gap-8 md:gap-10">
@@ -37,7 +43,7 @@ export default function SobrePage() {
             </div>
             <div className="relative hidden min-h-[280px] md:block">
               <Image
-                src={galleryPhotos[0]}
+                src={heroPhoto}
                 alt=""
                 fill
                 className="object-cover"

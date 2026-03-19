@@ -1,11 +1,28 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ColorauLogo } from "@/components/colorau-logo";
 import { HeroOrbs } from "@/components/hero-orbs";
 import { Reveal } from "@/components/reveal";
-import { galleryPhotos } from "@/lib/site-data";
+import { getGalleryPhotos } from "@/lib/get-gallery-photos.server";
+import { HomePhotoSlot } from "@/components/home-photo-slot";
+
+export const dynamic = "force-dynamic";
+
+function sampleWithoutReplacement<T>(items: T[], count: number) {
+  const pool = [...items];
+  const out: T[] = [];
+  while (out.length < count && pool.length > 0) {
+    const idx = Math.floor(Math.random() * pool.length);
+    out.push(pool.splice(idx, 1)[0]!);
+  }
+  return out;
+}
 
 export default function Home() {
+  const galleryPhotos = getGalleryPhotos();
+  const picked = sampleWithoutReplacement(galleryPhotos, 2);
+  const photoA = picked[0] ?? "/file.svg";
+  const photoB = picked[1] ?? photoA;
+
   return (
     <div className="relative overflow-hidden py-10 md:py-16">
       <HeroOrbs />
@@ -64,15 +81,11 @@ export default function Home() {
           </article>
 
           <article className="section-card h-full min-h-[320px] bg-accent p-2 overflow-hidden md:min-h-[420px]">
-            <div className="relative h-full w-full">
-              <Image
-                src={galleryPhotos[4]}
-                alt="Foto da galeria 1 do COLORAU"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
+            <HomePhotoSlot
+              photos={galleryPhotos}
+              initialSrc={photoA}
+              alt="Foto do COLORAU"
+            />
           </article>
 
           <article className="section-card h-full p-0 overflow-hidden">
@@ -139,15 +152,11 @@ export default function Home() {
           </article>
 
           <article className="section-card h-full min-h-[320px] bg-accent p-2 overflow-hidden md:min-h-[420px]">
-            <div className="relative h-full w-full">
-              <Image
-                src={galleryPhotos[5]}
-                alt="Foto da galeria 2 do COLORAU"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
+            <HomePhotoSlot
+              photos={galleryPhotos}
+              initialSrc={photoB}
+              alt="Foto do COLORAU"
+            />
           </article>
         </Reveal>
       </section>

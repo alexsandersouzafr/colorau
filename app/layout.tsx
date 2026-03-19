@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LocomotiveScrollProvider } from "@/components/locomotive-scroll-provider";
 
 const dmSans = localFont({
   variable: "--font-body",
@@ -78,6 +79,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${dmSans.variable} ${ivyoraDisplay.variable} antialiased`}>
         <ThemeProvider>
+          <LocomotiveScrollProvider />
           <div className="flex min-h-screen flex-col">
             <SiteHeader />
             <main className="flex-1">{children}</main>

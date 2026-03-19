@@ -1,8 +1,11 @@
 import Image from "next/image";
 import { Reveal } from "@/components/reveal";
-import { galleryPhotos } from "@/lib/site-data";
+import { getGalleryPhotos } from "@/lib/get-gallery-photos.server";
+
+export const dynamic = "force-dynamic";
 
 export default function GaleriaPage() {
+  const galleryPhotos = getGalleryPhotos();
   return (
     <div className="py-10 md:py-16">
       <section className="container-width flex flex-col gap-8 md:gap-10">

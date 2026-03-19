@@ -186,11 +186,4 @@ export const coristaDocuments: Array<{
   },
 ];
 
-export const galleryPhotos = [
-  "/Foto-113.jpg",
-  "/Foto-13.jpg",
-  "/Foto-19.jpg",
-  "/Foto-22.jpg",
-  "/Foto-52.jpg",
-  "/Foto-6.jpg",
-];
+// Gallery photos are loaded dynamically from `public/` (see `get-gallery-photos.server.ts`).
