@@ -102,47 +102,75 @@ function applyFavicon(accentColor: string) {
   head.appendChild(shortcut);
 }
 
+function hexToRgbTriplet(hex: string): string | null {
+  const normalized = hex.trim().replace("#", "");
+  if (/^[0-9a-fA-F]{3}$/.test(normalized)) {
+    const r = normalized[0] + normalized[0];
+    const g = normalized[1] + normalized[1];
+    const b = normalized[2] + normalized[2];
+    return `${parseInt(r, 16)}, ${parseInt(g, 16)}, ${parseInt(b, 16)}`;
+  }
+  if (/^[0-9a-fA-F]{6}$/.test(normalized)) {
+    const r = normalized.slice(0, 2);
+    const g = normalized.slice(2, 4);
+    const b = normalized.slice(4, 6);
+    return `${parseInt(r, 16)}, ${parseInt(g, 16)}, ${parseInt(b, 16)}`;
+  }
+  return null;
+}
+
 function applyAccent(option: AccentOption) {
   if (typeof document === "undefined") return;
   const root = document.documentElement;
   root.style.setProperty("--accent", option.value);
   root.style.setProperty("--accent-foreground", "#090909");
+  const accentRgb = hexToRgbTriplet(option.value);
+  if (accentRgb) root.style.setProperty("--accent-rgb", accentRgb);
   applyFavicon(option.value);
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const lastAppliedPathnameRef = useRef(pathname);
-  const isLockedRef = useRef(false);
 
-  const [isLocked, setIsLocked] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    try {
-      return window.localStorage.getItem(STORAGE_LOCKED) === "yes";
-    } catch {
-      return false;
-    }
-  });
+  // Keep initial render consistent between server/client to avoid hydration mismatches.
+  const [isLocked, setIsLocked] = useState<boolean>(false);
+  const [accentId, setAccentId] = useState<AccentId>("orange");
+  const [hasHydrated, setHasHydrated] = useState<boolean>(false);
+
+  const isLockedRef = useRef(isLocked);
 
   // Keep refs in sync for scheduled callbacks.
   useEffect(() => {
     isLockedRef.current = isLocked;
   }, [isLocked]);
 
-  const [accentId, setAccentId] = useState<AccentId>(() => {
-    if (typeof window === "undefined") return "orange";
+  // Hydrate theme state from localStorage (client-only) after the first render.
+  useEffect(() => {
+    let lockedFromStorage = false;
+    let storedAccentId: string | null = null;
+
     try {
-      const lockedFromStorage =
+      lockedFromStorage =
         window.localStorage.getItem(STORAGE_LOCKED) === "yes";
-      const storedAccentId = window.localStorage.getItem(STORAGE_ACCENT_ID);
-      if (lockedFromStorage && isValidAccentId(storedAccentId)) {
-        return storedAccentId;
-      }
+      storedAccentId = window.localStorage.getItem(STORAGE_ACCENT_ID);
     } catch {
       // ignore storage failures
     }
-    return chooseRandomAccentId();
-  });
+
+    // When locked, prefer the stored accent if valid. Otherwise, pick a fresh one.
+    const nextAccentId: AccentId = isValidAccentId(storedAccentId)
+      ? storedAccentId
+      : chooseRandomAccentId();
+
+    setIsLocked(lockedFromStorage);
+    isLockedRef.current = lockedFromStorage;
+    setAccentId(nextAccentId);
+    // Only align on initial hydration; subsequent route changes should not re-hydrate.
+    lastAppliedPathnameRef.current = pathname;
+    setHasHydrated(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const persistAccent = useCallback((id: AccentId) => {
     try {
@@ -166,10 +194,18 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (!option) return;
     applyAccent(option);
 
-    // Keep localStorage aligned with the current state.
-    persistAccent(accentId);
-    persistLocked(isLocked);
-  }, [accentId, isLocked, persistAccent, persistLocked]);
+    // Keep localStorage aligned with the current state (after hydration).
+    if (hasHydrated) {
+      persistAccent(accentId);
+      persistLocked(isLocked);
+    }
+  }, [
+    accentId,
+    hasHydrated,
+    isLocked,
+    persistAccent,
+    persistLocked,
+  ]);
 
   const setAccent = useCallback(
     (id: AccentId) => {
@@ -185,18 +221,21 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const setLocked = useCallback(
     (locked: boolean) => {
       setIsLocked(locked);
+      // Ensure scheduled callbacks see the latest value immediately.
+      isLockedRef.current = locked;
       persistLocked(locked);
     },
     [persistLocked]
   );
 
   useEffect(() => {
+    if (!hasHydrated) return;
     if (lastAppliedPathnameRef.current === pathname) return;
 
     // Move the ref first so quick successive route changes don't double-apply.
     lastAppliedPathnameRef.current = pathname;
 
-    if (isLocked) return;
+    if (isLockedRef.current) return;
 
     const scheduledPathname = pathname;
     const nextAccentId = chooseRandomAccentId(accentId);
@@ -211,7 +250,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       if (isLockedRef.current) return;
       setAccent(nextAccentId);
     });
-  }, [accentId, isLocked, pathname, setAccent]);
+  }, [accentId, hasHydrated, pathname, setAccent]);
 
   const value: ThemeContextValue = {
     accentId,

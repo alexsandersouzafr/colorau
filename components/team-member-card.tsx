@@ -33,7 +33,7 @@ export function TeamMemberCard({ member }: { member: TeamMember }) {
           <h4 className="mt-2 text-2xl font-semibold leading-tight text-black">
             {member.name}
           </h4>
-          <p className="mt-1 text-sm text-black/70">{member.role}</p>
+          <p className="mt-1 text-sm text-accent opacity-80">{member.role}</p>
         </div>
 
         {hasBio && (

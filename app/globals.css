@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f3f3f3;
-  --foreground: #090909;
+  --background: #000000;
+  --foreground: #ffffff;
   --accent: #ffffff;
   --accent-foreground: #090909;
+  --accent-rgb: 255, 255, 255;
   --accent-soft: #ffe300;
   --surface: #ffffff;
   --color-cyan: #00e0f0;
@@ -44,6 +45,35 @@ body {
   color: var(--foreground);
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
   font-weight: 600;
+  position: relative;
+  z-index: 0;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -25%;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(
+      circle at 20% 10%,
+      rgba(var(--accent-rgb), 0.18) 0%,
+      rgba(var(--accent-rgb), 0) 56%
+    ),
+    radial-gradient(
+      circle at 80% 18%,
+      rgba(var(--accent-rgb), 0.13) 0%,
+      rgba(var(--accent-rgb), 0) 60%
+    ),
+    radial-gradient(
+      circle at 50% 92%,
+      rgba(var(--accent-rgb), 0.1) 0%,
+      rgba(var(--accent-rgb), 0) 64%
+    );
+  filter: blur(120px);
+  opacity: 1;
+  transform: translateZ(0);
 }
 
 h1,
@@ -90,7 +120,7 @@ textarea {
 }
 
 .section-card {
-  @apply bg-white px-6 py-7 md:px-10 md:py-10;
+  @apply bg-white px-6 py-7 md:px-10 md:py-10 text-black;
 }
 
 .section-inverse {
