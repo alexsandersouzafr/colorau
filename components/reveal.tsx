@@ -21,6 +21,7 @@ export function Reveal({ children, className, textStagger = true }: RevealProps)
     }
 
     const element = ref.current;
+    let timeline: gsap.core.Timeline | null = null;
     const ctx = gsap.context(() => {
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
       if (reduceMotion.matches) {
@@ -34,7 +35,7 @@ export function Reveal({ children, className, textStagger = true }: RevealProps)
           )
         : [];
 
-      const timeline = gsap.timeline({
+      timeline = gsap.timeline({
         scrollTrigger: {
           trigger: element,
           start: "top 84%",
@@ -71,7 +72,18 @@ export function Reveal({ children, className, textStagger = true }: RevealProps)
       }
     }, element);
 
-    return () => ctx.revert();
+    return () => {
+      // Ensure ScrollTrigger instances tied to this element are killed first.
+      try {
+        ScrollTrigger.getAll().forEach((st) => {
+          if (st.trigger === element) st.kill();
+        });
+      } catch {
+        // ignore cleanup issues
+      }
+      timeline?.kill();
+      ctx.revert();
+    };
   }, [textStagger]);
 
   return (

@@ -92,9 +92,7 @@ export default function CoristaPage() {
                 Acesso do Corista
               </h1>
               <p className="mt-4 max-w-4xl text-black/75">
-                Repertório centralizado com links para áudios por naipe, partitura e
-                vídeo de referência. Atualize os links diretamente neste arquivo
-                sempre que uma música nova entrar no programa.
+                Baixe partituras, áudios, acesse vídeos de referência e outros documentos.
               </p>
             </div>
           </div>

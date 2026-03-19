@@ -32,7 +32,15 @@ export function HeroOrbs() {
       });
     });
 
-    return () => ctx.revert();
+    return () => {
+      try {
+        if (firstOrb.current) gsap.killTweensOf(firstOrb.current);
+        if (secondOrb.current) gsap.killTweensOf(secondOrb.current);
+      } catch {
+        // ignore cleanup issues
+      }
+      ctx.revert();
+    };
   }, []);
 
   return (

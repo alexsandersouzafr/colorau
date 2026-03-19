@@ -12,8 +12,8 @@ export default function Home() {
       <section className="container-width flex flex-col gap-8 md:gap-10">
         <Reveal className="grid items-stretch gap-6 md:grid-cols-2">
           <article className="section-card h-full bg-accent p-0 text-accent-foreground overflow-hidden">
-            <div className="flex flex-col items-start justify-start px-6 py-7 md:px-8 md:py-8">
-              <ColorauLogo className="mt-4 h-20 w-auto text-current md:h-28" />
+            <div className="flex flex-col items-start justify-between h-full px-6 py-7 md:px-8 md:py-8">
+              <ColorauLogo className="mt-4 h-20 w-auto text-current md:h-40" />
               <p className="subtitle-italic mt-3 text-4xl font-extralight tracking-[0.06em]">
                 Um coro de corpos plurais e sensíveis
               </p>
@@ -26,18 +26,6 @@ export default function Home() {
                   Conheça o Colorau
                 </Link>
               </div>
-            </div>
-          </article>
-
-          <article className="section-card h-full min-h-[320px] bg-accent p-2 overflow-hidden md:min-h-[420px]">
-            <div className="relative h-full w-full">
-              <Image
-                src={galleryPhotos[4]}
-                alt="Foto da galeria 1 do COLORAU"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
             </div>
           </article>
 
@@ -72,6 +60,18 @@ export default function Home() {
               >
                 Quero me inscrever
               </a>
+            </div>
+          </article>
+
+          <article className="section-card h-full min-h-[320px] bg-accent p-2 overflow-hidden md:min-h-[420px]">
+            <div className="relative h-full w-full">
+              <Image
+                src={galleryPhotos[4]}
+                alt="Foto da galeria 1 do COLORAU"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
           </article>
 

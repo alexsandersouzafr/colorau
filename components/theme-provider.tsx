@@ -85,21 +85,23 @@ function applyFavicon(accentColor: string) {
   const svg = `<svg width="284" height="284" viewBox="0 0 284 284" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="142" cy="142" r="142" fill="${accentColor}"/>${paths}</svg>`;
   const href = `data:image/svg+xml,${encodeURIComponent(svg)}`;
   const head = document.head;
-  head
-    .querySelectorAll<HTMLLinkElement>("link[rel*='icon']")
-    .forEach((node) => node.remove());
 
-  const icon = document.createElement("link");
-  icon.rel = "icon";
-  icon.type = "image/svg+xml";
-  icon.href = href;
-  head.appendChild(icon);
+  const upsertLink = (rel: string) => {
+    const selector = `link[data-colorau-favicon="true"][rel="${rel}"]`;
+    let node = head.querySelector<HTMLLinkElement>(selector);
+    if (!node) {
+      node = document.createElement("link");
+      node.dataset.colorauFavicon = "true";
+      node.rel = rel;
+      node.type = "image/svg+xml";
+      head.appendChild(node);
+    }
+    node.href = href;
+  };
 
-  const shortcut = document.createElement("link");
-  shortcut.rel = "shortcut icon";
-  shortcut.type = "image/svg+xml";
-  shortcut.href = href;
-  head.appendChild(shortcut);
+  // Avoid removing other <head> icon links that Next/React may manage.
+  upsertLink("icon");
+  upsertLink("shortcut icon");
 }
 
 function hexToRgbTriplet(hex: string): string | null {
