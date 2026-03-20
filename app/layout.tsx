@@ -44,7 +44,7 @@ const ivyoraDisplay = localFont({
 const siteTitle =
   "COLORAU — coletivo coral contemporâneo em Belo Horizonte";
 const siteDescription =
-  "Site oficial do COLORAU, coletivo coral contemporâneo em Belo Horizonte. Conheça o coro e saiba como participar.";
+  "Coletivo coral contemporâneo em Belo Horizonte. Conheça o coro e saiba como participar.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://colorau.art"),
