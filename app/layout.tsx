@@ -55,7 +55,6 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: "https://colorau.art",
     siteName: "COLORAU",
-    title: siteTitle,
     description: siteDescription,
     images: [
       {
