@@ -69,7 +69,7 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-black/85 backdrop-blur">
+    <header className="sticky top-0 z-50 bg-black/70 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-4 text-white md:flex-row md:items-stretch md:gap-0 md:px-8">
         <Link
           href="/"
@@ -92,7 +92,7 @@ export function SiteHeader() {
                   : "bg-white/15 text-white hover:bg-white/25"
                 : isActive
                 ? "bg-white text-black"
-                : "bg-white/10 text-white/80 hover:bg-white/20 hover:text-white"
+                : "bg-white/20 text-white/80 hover:bg-white/20 hover:text-white"
             }`;
 
             if (isCorista) {
@@ -106,7 +106,7 @@ export function SiteHeader() {
                     {item.label}
                   </Link>
 
-                  <div className="flex items-center gap-2 rounded-full bg-white/10 p-1">
+                  <div className="flex items-center gap-2 rounded-full bg-white/20 p-1">
                     <button
                       type="button"
                       onClick={() =>
@@ -117,7 +117,7 @@ export function SiteHeader() {
                       aria-label="Abrir menu de cores"
                     >
                       <span
-                        className={`h-4 w-4 rounded-full border border-white/40 ${
+                        className={`h-4 w-4 rounded-full border border-white/40 transition-[background-color] duration-[2s] ease-in-out ${
                           !accentId ? "border-dashed bg-transparent" : ""
                         }`}
                         style={
