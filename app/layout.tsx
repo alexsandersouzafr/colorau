@@ -41,33 +41,36 @@ const ivyoraDisplay = localFont({
   display: "swap",
 });
 
+const siteTitle =
+  "COLORAU — coletivo coral contemporâneo em Belo Horizonte";
+const siteDescription =
+  "Site oficial do COLORAU, coletivo coral contemporâneo em Belo Horizonte. Conheça o coro e saiba como participar.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://colorau.art"),
-  title: "COLORAU",
-  description:
-    "Site oficial do COLORAU, coletivo coral contemporâneo de Belo Horizonte.",
+  title: siteTitle,
+  description: siteDescription,
   openGraph: {
     type: "website",
+    locale: "pt_BR",
     url: "https://colorau.art",
     siteName: "COLORAU",
-    title: "COLORAU",
-    description:
-      "Site oficial do COLORAU, coletivo coral contemporâneo de Belo Horizonte.",
+    title: siteTitle,
+    description: siteDescription,
     images: [
       {
-        url: "/Foto-113.jpg",
+        url: "/og-thumb.jpg",
         width: 1200,
         height: 630,
-        alt: "COLORAU - coletivo coral contemporâneo",
+        alt: "COLORAU — coral contemporâneo de vozes plurais em Belo Horizonte; visite colorau.art",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "COLORAU | Coro Misto",
-    description:
-      "Site oficial do COLORAU, coletivo coral contemporâneo de Belo Horizonte.",
-    images: ["/Foto-113.jpg"],
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/og-thumb.jpg"],
   },
 };
 
