@@ -5,8 +5,10 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
+  type SetStateAction,
 } from "react";
 import { usePathname } from "next/navigation";
 
@@ -64,6 +66,11 @@ function storageSet(key: string, value: string): void {
   } catch {
     /* ignore */
   }
+}
+
+function readLockedFromStorage(): boolean {
+  const v = storageGet(STORAGE_LOCKED);
+  return v === "yes" || v === "true";
 }
 
 function isValidAccentId(value: string | null): value is AccentId {
@@ -226,7 +233,10 @@ type ThemeContextValue = {
   options: AccentOption[];
   setAccent: (id: AccentId) => void;
   isLocked: boolean;
-  setLocked: (locked: boolean) => void;
+  /** Igual ao `setState` do React: aceita valor ou função `(prev) => next`. */
+  setLocked: (value: SetStateAction<boolean>) => void;
+  /** Tema já leu `localStorage` e aplicou variáveis CSS (evita flash do default). */
+  isThemeReady: boolean;
 };
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
@@ -235,6 +245,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const lastAppliedPathnameRef = useRef(pathname);
   const isLockedRef = useRef(false);
+  const storageHydratedRef = useRef(false);
 
   const [isLocked, setIsLocked] = useState(false);
   const [accentId, setAccentId] = useState<AccentId>("orange");
@@ -244,17 +255,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     isLockedRef.current = isLocked;
   }, [isLocked]);
 
-  useEffect(() => {
-    const lockedFromStorage = storageGet(STORAGE_LOCKED) === "yes";
+  // Antes do primeiro paint no cliente: aplica accent/cadeado do storage (evita frames em laranja).
+  useLayoutEffect(() => {
+    if (storageHydratedRef.current) return;
+    storageHydratedRef.current = true;
+
+    const lockedFromStorage = readLockedFromStorage();
     const storedAccentId = storageGet(STORAGE_ACCENT_ID);
     const nextAccentId: AccentId = isValidAccentId(storedAccentId)
       ? storedAccentId
       : chooseRandomAccentId();
+    const option = ACCENT_OPTIONS.find((opt) => opt.id === nextAccentId);
+    if (!option) return;
 
     setIsLocked(lockedFromStorage);
     isLockedRef.current = lockedFromStorage;
     setAccentId(nextAccentId);
     lastAppliedPathnameRef.current = pathname;
+    applyAccent(option);
     setHasHydrated(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -268,13 +286,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
+    if (!hasHydrated) return;
     const option = ACCENT_OPTIONS.find((opt) => opt.id === accentId);
     if (!option) return;
     applyAccent(option);
-    if (hasHydrated) {
-      persistAccent(accentId);
-      persistLocked(isLocked);
-    }
+    persistAccent(accentId);
+    persistLocked(isLocked);
   }, [accentId, hasHydrated, isLocked, persistAccent, persistLocked]);
 
   const setAccent = useCallback(
@@ -289,10 +306,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   );
 
   const setLocked = useCallback(
-    (locked: boolean) => {
-      setIsLocked(locked);
-      isLockedRef.current = locked;
-      persistLocked(locked);
+    (value: SetStateAction<boolean>) => {
+      setIsLocked((prev) => {
+        const next = typeof value === "function" ? value(prev) : value;
+        isLockedRef.current = next;
+        persistLocked(next);
+        return next;
+      });
     },
     [persistLocked],
   );
@@ -320,6 +340,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setAccent,
     isLocked,
     setLocked,
+    isThemeReady: hasHydrated,
   };
 
   return (

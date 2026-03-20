@@ -122,7 +122,7 @@ export function SiteHeader() {
                     <button
                       type="button"
                       onClick={() => {
-                        setLocked(!isLocked);
+                        setLocked((prev) => !prev);
                         closePalette();
                       }}
                       className={`flex h-[38px] w-[38px] items-center justify-center rounded-full transition ${
