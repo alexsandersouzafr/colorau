@@ -15,6 +15,13 @@ export function LocomotiveScrollProvider() {
 
   useEffect(() => {
     let canceled = false;
+    let resizeDebounce: ReturnType<typeof setTimeout> | undefined;
+
+    const refreshLayout = () => {
+      if (canceled) return;
+      instanceRef.current?.resize?.();
+      ScrollTrigger.refresh();
+    };
 
     const create = async () => {
       const mod = await import("locomotive-scroll");
@@ -31,8 +38,8 @@ export function LocomotiveScrollProvider() {
         lenisOptions: {
           orientation: "vertical",
           // Tuning for a "butter" feel.
-          // Lower lerp = more eased movement (default in Lenis is ~0.075).
-          lerp: 0.08,
+          // Lower lerp = slower deceleration / longer glide (default in Lenis is ~0.075).
+          lerp: 0.045,
           smoothWheel: true,
           wheelMultiplier: 1,
         },
@@ -45,8 +52,7 @@ export function LocomotiveScrollProvider() {
       // Ensure ScrollTrigger recalculates positions with the smooth-scroll engine.
       // Lenis/Locomotive updates dimensions after first layout pass.
       window.requestAnimationFrame(() => {
-        instanceRef.current?.resize?.();
-        ScrollTrigger.refresh();
+        refreshLayout();
       });
     };
 
@@ -54,13 +60,22 @@ export function LocomotiveScrollProvider() {
     create();
 
     const onResize = () => {
-      instanceRef.current?.resize?.();
+      clearTimeout(resizeDebounce);
+      resizeDebounce = setTimeout(refreshLayout, 150);
     };
     window.addEventListener("resize", onResize);
 
+    const onLoad = () => refreshLayout();
+    window.addEventListener("load", onLoad);
+
+    const fontsReady = document.fonts?.ready;
+    fontsReady?.then(() => refreshLayout());
+
     return () => {
       canceled = true;
+      clearTimeout(resizeDebounce);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("load", onLoad);
       instanceRef.current?.destroy?.();
       instanceRef.current = null;
     };

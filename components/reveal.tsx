@@ -41,7 +41,9 @@ export function Reveal({ children, className, textStagger = true }: RevealProps)
           // Earlier reveal so it doesn't feel late with smooth scroll engines.
           start: "top 80%",
           end: "bottom top",
-          toggleActions: "play reverse play reverse",
+          // With Lenis/Locomotive, scroll often leaves the trigger range before the
+          // timeline finishes; "reverse" on leave interrupts tweens and feels truncated.
+          toggleActions: "play none play none",
         },
       });
 
