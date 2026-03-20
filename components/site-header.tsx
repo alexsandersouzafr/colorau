@@ -7,6 +7,14 @@ import { navItems } from "@/lib/site-data";
 import { ColorauLogo } from "@/components/colorau-logo";
 import { useThemeAccent } from "@/components/theme-provider";
 
+/** Início do stagger (ms) — entra depois do arranque do slide do header. */
+const SITE_HEADER_STAGGER_BASE_MS = 1020;
+const SITE_HEADER_STAGGER_STEP_MS = 155;
+
+function siteHeaderItemDelayMs(step: number) {
+  return SITE_HEADER_STAGGER_BASE_MS + step * SITE_HEADER_STAGGER_STEP_MS;
+}
+
 export function SiteHeader() {
   const DOT_STAGGER_MS = 32;
   const DOT_ENTER_MS = 240;
@@ -69,17 +77,19 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-black/70 backdrop-blur">
+    <header className="site-header-enter sticky top-0 z-50 bg-black/70 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-4 text-white md:flex-row md:items-stretch md:gap-0 md:px-8">
-        <Link
-          href="/"
-          className="order-1 flex items-center justify-center text-white md:order-3 md:ml-auto md:justify-start"
+        <div
+          className="site-header-stagger-item order-1 flex items-center justify-center md:order-3 md:ml-auto md:justify-start"
+          style={{ animationDelay: `${siteHeaderItemDelayMs(6)}ms` }}
         >
-          <ColorauLogo className="h-8 w-auto md:h-10" />
-        </Link>
+          <Link href="/" className="flex items-center text-white">
+            <ColorauLogo className="h-8 w-auto md:h-10" />
+          </Link>
+        </div>
 
         <nav className="order-2 flex flex-wrap items-center gap-2 text-xs md:order-1 md:text-sm">
-          {orderedNavItems.map((item) => {
+          {orderedNavItems.map((item, navIndex) => {
             const isActive = pathname === item.href;
             const isCorista = item.href === "/corista";
             const currentOption = accentId
@@ -99,121 +109,151 @@ export function SiteHeader() {
               return (
                 <div
                   key={item.href}
-                  className="relative flex items-center gap-2"
+                  className="relative flex items-stretch gap-2"
                   ref={paletteRef}
                 >
-                  <Link href={item.href} className={linkClass}>
-                    {item.label}
-                  </Link>
+                  <div
+                    className="site-header-stagger-item flex shrink-0 self-stretch"
+                    style={{
+                      animationDelay: `${siteHeaderItemDelayMs(3)}ms`,
+                    }}
+                  >
+                    <Link
+                      href={item.href}
+                      className={`inline-flex h-full min-h-0 items-center ${linkClass}`}
+                    >
+                      {item.label}
+                    </Link>
+                  </div>
 
-                  <div className="flex items-center gap-2 rounded-full bg-white/20 p-1">
+                  <div
+                    className="site-header-stagger-item flex shrink-0 self-stretch items-stretch"
+                    style={{
+                      animationDelay: `${siteHeaderItemDelayMs(4)}ms`,
+                    }}
+                  >
                     <button
                       type="button"
                       onClick={() =>
                         isPaletteOpen ? closePalette() : openPalette()
                       }
-                      className="flex h-[38px] w-[38px] items-center justify-center rounded-full text-white transition hover:bg-white/20"
+                      className="box-border flex aspect-square h-full min-h-0 max-h-full w-auto shrink-0 items-center justify-center rounded-full bg-white/20 px-2 text-white transition hover:bg-white/30"
                       aria-expanded={isPaletteOpen}
+                      aria-haspopup="true"
                       aria-label="Abrir menu de cores"
                     >
                       <span
-                        className={`h-4 w-4 rounded-full border border-white/40 transition-[background-color] duration-[2s] ease-in-out ${
+                        className={`size-3 shrink-0 rounded-full border border-white/50 transition-[background-color] duration-[2s] ease-in-out ${
                           !accentId ? "border-dashed bg-transparent" : ""
                         }`}
                         style={
                           accentId
-                            ? { backgroundColor: currentOption?.value ?? "transparent" }
+                            ? {
+                                backgroundColor:
+                                  currentOption?.value ?? "transparent",
+                              }
                             : undefined
                         }
                       />
                     </button>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setLocked((prev) => !prev);
-                        closePalette();
-                      }}
-                      className={`flex h-[38px] w-[38px] items-center justify-center rounded-full transition ${
-                        isLocked && isThemeReady
-                          ? "bg-accent text-accent-foreground"
-                          : isLocked
-                            ? "bg-white/25 text-white"
-                            : "bg-white/10 text-white hover:bg-white/20"
-                      }`}
-                      aria-label={
-                        isLocked
-                          ? "Destravar mudanças de cor"
-                          : "Travar mudanças de cor"
-                      }
-                      aria-pressed={isLocked}
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-4 w-4"
-                        aria-hidden="true"
-                      >
-                        <path d="M17 11V7a5 5 0 0 0-10 0v4" />
-                        <rect x="3" y="11" width="18" height="10" rx="2" />
-                      </svg>
-                    </button>
                   </div>
                   {isPaletteMounted && (
-                  <div
-                    className={`absolute left-1/2 top-[44px] z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 items-center gap-2 rounded-full bg-black/90 p-2 backdrop-blur transition-all duration-180 ease md:max-w-none ${
-                      isPaletteOpen
-                        ? "translate-y-0 scale-100 opacity-100"
-                        : "pointer-events-none -translate-y-2 scale-95 opacity-0"
-                    }`}
-                    style={{
-                      transitionDelay: isPaletteOpen
-                        ? "0ms"
-                        : `${Math.max(0, options.length * DOT_STAGGER_MS - 90)}ms`,
-                    }}
-                  >
-                    {options.map((option, index) => (
+                    <div
+                      className={`absolute left-1/2 top-full z-50 mt-2 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 items-center gap-2 rounded-full bg-black/90 py-2 pl-2 pr-2.5 backdrop-blur transition-all duration-180 ease md:max-w-none ${
+                        isPaletteOpen
+                          ? "translate-y-0 scale-100 opacity-100"
+                          : "pointer-events-none -translate-y-2 scale-95 opacity-0"
+                      }`}
+                      style={{
+                        transitionDelay: isPaletteOpen
+                          ? "0ms"
+                          : `${Math.max(0, options.length * DOT_STAGGER_MS - 90)}ms`,
+                      }}
+                    >
                       <button
-                        key={option.id}
                         type="button"
-                        onClick={() => {
-                          setAccent(option.id);
-                          closePalette();
-                        }}
-                        className={`h-5 w-5 rounded-full ${
-                          isPaletteOpen ? "theme-dot-enter" : "theme-dot-exit"
-                        } ${
-                          accentId && option.id === accentId
-                            ? "ring-2 ring-white ring-offset-1 ring-offset-black"
-                            : "hover:scale-110"
+                        onClick={() => setLocked((prev) => !prev)}
+                        className={`flex size-7 shrink-0 items-center justify-center rounded-full transition ${
+                          isLocked && isThemeReady
+                            ? "bg-accent text-accent-foreground"
+                            : isLocked
+                              ? "bg-white/25 text-white"
+                              : "bg-white/10 text-white hover:bg-white/20"
                         }`}
-                        style={{
-                          backgroundColor: option.value,
-                          animationDelay: `${index * DOT_STAGGER_MS}ms`,
-                        }}
-                        aria-label="Selecionar cor"
+                        aria-label={
+                          isLocked
+                            ? "Destravar mudanças de cor"
+                            : "Travar mudanças de cor"
+                        }
+                        aria-pressed={isLocked}
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-3.5 w-3.5"
+                          aria-hidden="true"
+                        >
+                          <path d="M17 11V7a5 5 0 0 0-10 0v4" />
+                          <rect x="3" y="11" width="18" height="10" rx="2" />
+                        </svg>
+                      </button>
+                      <span
+                        className="h-5 w-px shrink-0 bg-white/20"
+                        aria-hidden="true"
                       />
-                    ))}
-                  </div>
+                      {options.map((option, index) => (
+                        <button
+                          key={option.id}
+                          type="button"
+                          onClick={() => {
+                            setAccent(option.id);
+                            closePalette();
+                          }}
+                          className={`size-[18px] shrink-0 rounded-full ${
+                            isPaletteOpen ? "theme-dot-enter" : "theme-dot-exit"
+                          } ${
+                            accentId && option.id === accentId
+                              ? "ring-2 ring-white ring-offset-1 ring-offset-black"
+                              : "hover:scale-110"
+                          }`}
+                          style={{
+                            backgroundColor: option.value,
+                            animationDelay: `${index * DOT_STAGGER_MS}ms`,
+                          }}
+                          aria-label="Selecionar cor"
+                        />
+                      ))}
+                    </div>
                   )}
                 </div>
               );
             }
 
             return (
-              <Link key={item.href} href={item.href} className={linkClass}>
-                {item.label}
-              </Link>
+              <div
+                key={item.href}
+                className="site-header-stagger-item flex shrink-0"
+                style={{
+                  animationDelay: `${siteHeaderItemDelayMs(navIndex)}ms`,
+                }}
+              >
+                <Link href={item.href} className={linkClass}>
+                  {item.label}
+                </Link>
+              </div>
             );
           })}
         </nav>
 
         <div className="order-2 hidden flex-1 items-center justify-center gap-4 px-4 md:flex">
-          <div className="hidden h-[40px] flex-1 md:block">
+          <div
+            className="site-header-stagger-item hidden h-[40px] flex-1 md:block"
+            style={{ animationDelay: `${siteHeaderItemDelayMs(5)}ms` }}
+          >
             <div
               aria-hidden="true"
               className="texture-panel texture-3 texture-background h-full"
