@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: "/og-thumb.png",
+        url: "/og-thumb.jpg",
         width: 1200,
         height: 630,
         alt: "COLORAU — coral contemporâneo em Belo Horizonte; visite colorau.art",
