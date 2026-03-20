@@ -360,6 +360,50 @@ textarea {
   }
 }
 
+/* Transição entre rotas (wrapper em <main>) */
+.page-trans-root {
+  transform-origin: 50% 0;
+}
+
+@keyframes page-trans-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes page-trans-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-trans-out {
+  animation: page-trans-out 350ms cubic-bezier(0.4, 0, 1, 1) forwards;
+  pointer-events: none;
+}
+
+.page-trans-in {
+  animation: page-trans-in 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-trans-out,
+  .page-trans-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+}
+
 @media (min-width: 768px) {
   .home-card-uniform {
     height: 612px;
