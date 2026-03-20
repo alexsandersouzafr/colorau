@@ -12,7 +12,8 @@ export function SiteHeader() {
   const DOT_ENTER_MS = 240;
   const CLOSE_BUFFER_MS = 80;
   const pathname = usePathname();
-  const { accentId, options, setAccent, isLocked, setLocked } = useThemeAccent();
+  const { accentId, options, setAccent, isLocked, setLocked, isThemeReady } =
+    useThemeAccent();
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
   const [isPaletteMounted, setIsPaletteMounted] = useState(false);
   const paletteRef = useRef<HTMLDivElement | null>(null);
@@ -81,10 +82,14 @@ export function SiteHeader() {
           {orderedNavItems.map((item) => {
             const isActive = pathname === item.href;
             const isCorista = item.href === "/corista";
-            const currentOption = options.find((option) => option.id === accentId);
+            const currentOption = accentId
+              ? options.find((option) => option.id === accentId)
+              : undefined;
             const linkClass = `rounded-full px-3 py-2 transition md:px-3 md:py-2 ${
               isCorista
-                ? "bg-accent text-accent-foreground hover:brightness-110"
+                ? isThemeReady
+                  ? "bg-accent text-accent-foreground hover:brightness-110"
+                  : "bg-white/15 text-white hover:bg-white/25"
                 : isActive
                 ? "bg-white text-black"
                 : "bg-white/10 text-white/80 hover:bg-white/20 hover:text-white"
@@ -112,10 +117,14 @@ export function SiteHeader() {
                       aria-label="Abrir menu de cores"
                     >
                       <span
-                        className="h-4 w-4 rounded-full border border-white/40"
-                        style={{
-                          backgroundColor: currentOption?.value ?? "#ffffff",
-                        }}
+                        className={`h-4 w-4 rounded-full border border-white/40 ${
+                          !accentId ? "border-dashed bg-transparent" : ""
+                        }`}
+                        style={
+                          accentId
+                            ? { backgroundColor: currentOption?.value ?? "transparent" }
+                            : undefined
+                        }
                       />
                     </button>
 
@@ -126,9 +135,11 @@ export function SiteHeader() {
                         closePalette();
                       }}
                       className={`flex h-[38px] w-[38px] items-center justify-center rounded-full transition ${
-                        isLocked
+                        isLocked && isThemeReady
                           ? "bg-accent text-accent-foreground"
-                          : "bg-white/10 text-white hover:bg-white/20"
+                          : isLocked
+                            ? "bg-white/25 text-white"
+                            : "bg-white/10 text-white hover:bg-white/20"
                       }`}
                       aria-label={
                         isLocked
@@ -176,7 +187,7 @@ export function SiteHeader() {
                         className={`h-5 w-5 rounded-full ${
                           isPaletteOpen ? "theme-dot-enter" : "theme-dot-exit"
                         } ${
-                          option.id === accentId
+                          accentId && option.id === accentId
                             ? "ring-2 ring-white ring-offset-1 ring-offset-black"
                             : "hover:scale-110"
                         }`}

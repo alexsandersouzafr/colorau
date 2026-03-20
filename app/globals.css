@@ -1,13 +1,27 @@
 @import "tailwindcss";
 
+/* Permite transição suave de --accent / --agenda-bg (tema pendente → definitivo). */
+@property --accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+@property --agenda-bg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
+}
+
 :root {
   --background: #f2f1ee;
   --foreground: #0c0c0c;
-  --accent: #ff8c00;
+  /* Tema inicial “transparente” (não é opção da paleta); JS substitui após ler o storage. */
+  --accent: transparent;
   --accent-foreground: #090909;
-  --accent-rgb: 255, 140, 0;
+  --accent-rgb: 0, 0, 0;
   --accent-soft: #ffe300;
   --surface: #ffffff;
+  --agenda-bg: var(--surface);
   --color-cyan: #00e0f0;
   --color-orange: #ff8c00;
   --color-violet: #5351fe;
@@ -18,6 +32,12 @@
   --color-soft-magenta: #ffb6ff;
   --color-deep-emerald: #006054;
   --color-gray: #8a8b8d;
+}
+
+html {
+  transition:
+    --accent 2s ease-in-out,
+    --agenda-bg 2s ease-in-out;
 }
 
 @theme inline {

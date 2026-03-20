@@ -229,13 +229,14 @@ function applyAccent(option: AccentOption) {
 }
 
 type ThemeContextValue = {
-  accentId: AccentId;
+  /** `null` = tema “transparente” inicial (antes de ler o storage); nunca é opção da paleta. */
+  accentId: AccentId | null;
   options: AccentOption[];
   setAccent: (id: AccentId) => void;
   isLocked: boolean;
   /** Igual ao `setState` do React: aceita valor ou função `(prev) => next`. */
   setLocked: (value: SetStateAction<boolean>) => void;
-  /** Tema já leu `localStorage` e aplicou variáveis CSS (evita flash do default). */
+  /** Tema definitivo já aplicado (após transição desde o estado pendente). */
   isThemeReady: boolean;
 };
 
@@ -245,20 +246,22 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const lastAppliedPathnameRef = useRef(pathname);
   const isLockedRef = useRef(false);
-  const storageHydratedRef = useRef(false);
 
   const [isLocked, setIsLocked] = useState(false);
-  const [accentId, setAccentId] = useState<AccentId>("orange");
+  const [accentId, setAccentId] = useState<AccentId | null>(null);
   const [hasHydrated, setHasHydrated] = useState(false);
 
   useEffect(() => {
     isLockedRef.current = isLocked;
   }, [isLocked]);
 
-  // Antes do primeiro paint no cliente: aplica accent/cadeado do storage (evita frames em laranja).
+  /**
+   * 1) Primeiro paint: só CSS :root (accent transparente, data-colorau-theme=pending no layout).
+   * 2) Dois rAF: garante um frame com o estado pendente antes de aplicar o tema definitivo
+   *    (navegadores interpolam --accent / --agenda-bg com @property em globals.css).
+   */
   useLayoutEffect(() => {
-    if (storageHydratedRef.current) return;
-    storageHydratedRef.current = true;
+    let alive = true;
 
     const lockedFromStorage = readLockedFromStorage();
     const storedAccentId = storageGet(STORAGE_ACCENT_ID);
@@ -270,10 +273,23 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     setIsLocked(lockedFromStorage);
     isLockedRef.current = lockedFromStorage;
-    setAccentId(nextAccentId);
     lastAppliedPathnameRef.current = pathname;
-    applyAccent(option);
-    setHasHydrated(true);
+
+    const settle = () => {
+      if (!alive) return;
+      document.documentElement.setAttribute("data-colorau-theme", "ready");
+      setAccentId(nextAccentId);
+      applyAccent(option);
+      setHasHydrated(true);
+    };
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(settle);
+    });
+
+    return () => {
+      alive = false;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -286,7 +302,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (!hasHydrated) return;
+    if (!hasHydrated || accentId == null) return;
     const option = ACCENT_OPTIONS.find((opt) => opt.id === accentId);
     if (!option) return;
     applyAccent(option);
@@ -325,7 +341,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (isLockedRef.current) return;
 
     const scheduledPathname = pathname;
-    const nextAccentId = chooseRandomAccentId(accentId);
+    const nextAccentId = chooseRandomAccentId(accentId ?? undefined);
 
     defer(() => {
       if (lastAppliedPathnameRef.current !== scheduledPathname) return;

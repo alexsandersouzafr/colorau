@@ -76,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" data-colorau-theme="pending">
       <body className={`${dmSans.variable} ${ivyoraDisplay.variable} antialiased`}>
         <ThemeProvider>
           <LocomotiveScrollProvider />
