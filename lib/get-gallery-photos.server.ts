@@ -8,7 +8,7 @@ function isImageFile(filename: string) {
   return /\.(jpe?g|png|webp)$/i.test(filename);
 }
 
-const EXCLUDED_GALLERY_FILES = new Set(["foto-19.jpg"]);
+const EXCLUDED_GALLERY_FILES = new Set(["foto-19.jpg", "og-thumb.jpg"]);
 
 function isExcluded(filename: string) {
   return EXCLUDED_GALLERY_FILES.has(filename.toLowerCase());

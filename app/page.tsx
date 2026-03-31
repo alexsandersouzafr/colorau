@@ -88,20 +88,23 @@ export default function Home() {
 
               <div className="mt-5 space-y-4">
                 <div className="p-4">
-                  <p className="text-xs uppercase tracking-[0.14em] bg-accent w-fit px-2 py-0.5 text-[var(--agenda-bg)]">
+                  <p className="text-xs uppercase tracking-[0.14em]w-fit py-0.5 text-accent">
                     Data a anunciar
                   </p>
                   <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case">
                     MAIS COLORAU!
                   </h3>
                 </div>
-                <div className="p-4">
-                  <p className="text-xs uppercase tracking-[0.14em] bg-accent w-fit px-2 py-0.5 text-[var(--agenda-bg)]">
-                    31/10/2026
+                <div className="p-4 flex justify-between items-end">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.14em]w-fit py-0.5 text-accent">
+                    SALA JUVENAL DIAS - PALÁCIO DAS ARTES
                   </p>
                   <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case">
                     Dendê Trapiá
                   </h3>
+                  </div>
+                  <div className="text-4xl font-normal normal-case">31.OUT</div>
                 </div>
               </div>
             </div>
