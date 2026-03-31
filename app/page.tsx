@@ -46,7 +46,7 @@ export default function Home() {
             </div>
           </article>
 
-          <article className="section-card h-full bg-accent p-0 text-black outline-accent">
+          {/* <article className="section-card h-full bg-accent p-0 text-black outline-accent">
             <div
               aria-hidden="true"
               className="texture-panel texture-4 texture-flip-y texture-black h-10 md:h-60"
@@ -78,15 +78,7 @@ export default function Home() {
                 Quero me inscrever
               </a>
             </div>
-          </article>
-
-          <article className="section-card h-full min-h-[320px] bg-accent p-2 overflow-hidden md:min-h-[420px]">
-            <HomePhotoSlot
-              photos={galleryPhotos}
-              initialSrc={photoA}
-              alt="Foto do COLORAU"
-            />
-          </article>
+          </article> */}
 
           <article className="section-card-agenda h-full p-0 overflow-hidden">
             <div className="px-6 py-7 md:px-8 md:py-8">
@@ -96,7 +88,7 @@ export default function Home() {
 
               <div className="mt-5 space-y-4">
                 <div className="p-4">
-                  <p className="text-xs uppercase tracking-[0.14em] text-accent">
+                  <p className="text-xs uppercase tracking-[0.14em] bg-accent w-fit px-2 py-0.5 text-[var(--agenda-bg)]">
                     Data a anunciar
                   </p>
                   <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case">
@@ -104,8 +96,8 @@ export default function Home() {
                   </h3>
                 </div>
                 <div className="p-4">
-                  <p className="text-xs uppercase tracking-[0.14em] text-accent">
-                    Data a anunciar
+                  <p className="text-xs uppercase tracking-[0.14em] bg-accent w-fit px-2 py-0.5 text-[var(--agenda-bg)]">
+                    31/10/2026
                   </p>
                   <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case">
                     Dendê Trapiá
@@ -116,6 +108,14 @@ export default function Home() {
             <div
               aria-hidden="true"
                 className="texture-panel texture-2 texture-background h-10 md:h-56"
+            />
+          </article>
+
+          <article className="section-card h-full min-h-[320px] bg-accent p-2 overflow-hidden md:min-h-[420px]">
+            <HomePhotoSlot
+              photos={galleryPhotos}
+              initialSrc={photoA}
+              alt="Foto do COLORAU"
             />
           </article>
 
@@ -153,13 +153,13 @@ export default function Home() {
             </div>
           </article>
 
-          <article className="section-card h-full min-h-[320px] bg-accent p-2 overflow-hidden md:min-h-[420px]">
+          {/* <article className="section-card h-full min-h-[320px] bg-accent p-2 overflow-hidden md:min-h-[420px]">
             <HomePhotoSlot
               photos={galleryPhotos}
               initialSrc={photoB}
               alt="Foto do COLORAU"
             />
-          </article>
+          </article> */}
         </Reveal>
       </section>
     </div>

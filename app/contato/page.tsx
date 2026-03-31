@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/reveal";
-import { Instagram, Mail } from "lucide-react";
+import { Instagram, Mail, MapPin } from "lucide-react";
 
 export default function ContatoPage() {
   return (
@@ -51,6 +51,16 @@ export default function ContatoPage() {
             >
               @coloraumusica
             </a>
+          </article>
+
+          <article className="section-card">
+            <div className="flex items-center gap-3">
+              <MapPin className="h-6 w-6 text-black" />
+              <h2 className="text-xl font-semibold text-black">Endereço</h2>
+            </div>
+            <p className="mt-3 text-lg text-black">
+              Edifício Maletta, Avenida Augusto de Lima, nº 233, 9º andar, Belo Horizonte, MG, Brasil
+            </p>
           </article>
         </Reveal>
       </section>

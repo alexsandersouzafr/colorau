@@ -15,7 +15,7 @@ export const teamMembers = [
     bio: placeholderBio,
   },
   {
-    name: "Laura de Assis",
+    name: "Laura Assis",
     role: "Preparação vocal",
     imageUrl: "/pessoas/laura.jpeg",
     bio: placeholderBio,
