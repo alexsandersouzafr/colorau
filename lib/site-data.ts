@@ -177,10 +177,6 @@ export const coristaDocuments: Array<{
   url: string;
 }> = [
   {
-    title: "Manifesto e Cultura (PDF)",
-    url: "/docs/MANIFESTO_E_CULTURA.pdf",
-  },
-  {
     title: "Discurso dos Sons (PDF)",
     url: "/docs/Discurso dos Sons.pdf",
   },

@@ -13,11 +13,13 @@ export const metadata: Metadata = {
   },
 };
 
+import { AuthGuard } from "@/components/auth-guard";
+
 export default function CoristaLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <AuthGuard>{children}</AuthGuard>;
 }
 

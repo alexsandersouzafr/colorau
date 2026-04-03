@@ -46,7 +46,7 @@ export default function Home() {
             </div>
           </article>
 
-          {/* <article className="section-card h-full bg-accent p-0 text-black outline-accent">
+          <article className="section-card h-full bg-accent p-0 text-black outline-accent">
             <div
               aria-hidden="true"
               className="texture-panel texture-4 texture-flip-y texture-black h-10 md:h-60"
@@ -55,30 +55,17 @@ export default function Home() {
               <h2 className="text-4xl font-semibold text-black">
                 Audições temporada 2026
               </h2>
-              <div className="mt-5 space-y-3 text-sm text-black uppercase md:text-base">
-                <div className="grid grid-cols-[1fr_auto] items-start gap-4">
-                  <span className="uppercase tracking-[0.08em]">Inscrições</span>
-                  <span className="text-right font-bold italic">Até 28/3</span>
-                </div>
-                <div className="grid grid-cols-[1fr_auto] items-start gap-4">
-                  <span className="uppercase tracking-[0.08em]">Audições</span>
-                  <span className="text-right font-bold italic">30/03 e 01/04</span>
-                </div>
-                <div className="grid grid-cols-[1fr_auto] items-start gap-4">
-                  <span className="uppercase tracking-[0.08em]">Ensaios</span>
-                  <span className="text-right font-bold italic">Segundas 18h30-21h</span>
-                </div>
+              <div className="mt-5 space-y-3 text-sm text-black md:text-base">
+                <p>Boas vindas às novas vozes do Colorau!</p>
               </div>
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfyA1tVd6ykYyY_CpAnw82rvyKGU-4Oq_jkT6d96BC-JWRgug/viewform"
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href="/resultado-audicoes"
                 className="mt-6 inline-flex bg-black px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-110"
               >
-                Quero me inscrever
-              </a>
+                Ver pessoas aprovadas
+              </Link>
             </div>
-          </article> */}
+          </article>
 
           <article className="section-card-agenda h-full p-0 overflow-hidden">
             <div className="px-6 py-7 md:px-8 md:py-8">
