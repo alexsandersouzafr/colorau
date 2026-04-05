@@ -46,7 +46,7 @@ export default function Home() {
             </div>
           </article>
 
-          <article className="section-card h-full bg-accent p-0 text-black outline-accent">
+          {/* <article className="section-card h-full bg-accent p-0 text-black outline-accent">
             <div
               aria-hidden="true"
               className="texture-panel texture-4 texture-flip-y texture-black h-10 md:h-60"
@@ -65,7 +65,7 @@ export default function Home() {
                 Ver pessoas aprovadas
               </Link>
             </div>
-          </article>
+          </article> */}
 
           <article className="section-card-agenda h-full p-0 overflow-hidden">
             <div className="px-6 py-7 md:px-8 md:py-8">
