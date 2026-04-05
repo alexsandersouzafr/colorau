@@ -80,7 +80,67 @@ export default function SobrePage() {
               Quem faz o COLORAU acontecer
             </h2>
 
-            <div className="flex flex-col gap-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                  <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">Soprano</h4>
+                  <ul className="space-y-2 text-white/80">
+                    <li>Ângela Maria</li>
+                    <li>Laiane Moreira</li>
+                    <li>Laura Assis</li>
+                    <li>Laura Santana</li>
+                    <li>Rafaela Bueno</li>
+                    <li>Thais Soki</li>
+                    <li aria-hidden="true" className="h-1 border-b border-4 border-accent/20 w-1/3"></li>
+                    <li>Amanda Laís</li>
+                    <li>Ana Luz</li>
+                    <li>Ester Ribeiro</li>
+                    <li>Luíza Marilac</li>
+                    <li>Mariana Queiroz</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">Contralto</h4>
+                  <ul className="space-y-2 text-white/80">
+                    <li>Aana</li>
+                    <li>Ana Rosa</li>
+                    <li>Malu Camargo</li>
+                    <li>Núbia Aguiar</li>
+                    <li aria-hidden="true" className="h-1 border-b border-4 border-accent/20 w-1/3"></li>
+                    <li>Ada Gomes</li>
+                    <li>Caroline Borges</li>
+                    <li>Layla Alcântara</li>
+                    <li>Paula Azevedo</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">Tenor</h4>
+                  <ul className="space-y-2 text-white/80">
+                    <li>Du Ribeiro</li>
+                    <li>Gustavo Moreno</li>
+                    <li>Luis Gustavo</li>
+                    <li>Margarete Leta</li>
+                    <li aria-hidden="true" className="h-1 border-b border-4 border-accent/20 w-1/3"></li>
+                    <li>André Dias</li>
+                    <li>Eduardo Moura</li>
+                    <li>Márcia Amélia</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">Baixo</h4>
+                  <ul className="space-y-2 text-white/80">
+                    <li>Burunin</li>
+                    <li>Makk</li>
+                    <li aria-hidden="true" className="h-1 border-b border-4 border-accent/20 w-1/3"></li>
+                    <li>Guilherme Felipe</li>
+                    <li>João Pereira</li>
+                    <li>Rafael Duarte</li>
+                  </ul>
+                </div>
+              </div>
+            
+          </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {roleOrder.flatMap((role) => {
                 const members = teamMembers.filter((m) => m.role === role);
                 if (!members.length) return [];
@@ -183,7 +243,6 @@ export default function SobrePage() {
                 ];
               })}
             </div>
-          </div>
         </Reveal>
 
         <Reveal className="section-card p-0">
