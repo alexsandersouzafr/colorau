@@ -94,6 +94,7 @@ export default function SobrePage() {
                     <li>Amanda Laís</li>
                     <li>Ana Luz</li>
                     <li>Ester Ribeiro</li>
+                    <li>Ingrid Mitraud</li>
                     <li>Luíza Marilac</li>
                     <li>Mariana Queiroz</li>
                   </ul>
