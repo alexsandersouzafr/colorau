@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Reveal } from "@/components/reveal";
 
 export function AuthGuard({ children }: { children: React.ReactNode }) {
-  const [isAuthorized, setIsAuthorized] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.sessionStorage.getItem("colorau-corista-access") === "yes";
-  });
+  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    setIsAuthorized(window.sessionStorage.getItem("colorau-corista-access") === "yes");
+  }, []);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -23,6 +24,26 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
       setError("Senha incorreta. Tente novamente.");
     }
   };
+
+  if (isAuthorized === null) {
+    return (
+      <div className="py-10 md:py-16">
+        <section className="container-width">
+          <Reveal className="section-card section-inverse max-w-xl">
+            <p className="text-xs uppercase tracking-[0.14em] text-accent">
+              Área restrita
+            </p>
+            <h1 className="mt-4 text-3xl font-semibold md:text-4xl">
+              Verificando acesso
+            </h1>
+            <p className="mt-4 text-sm text-white/75">
+              Carregando a área interna do corista.
+            </p>
+          </Reveal>
+        </section>
+      </div>
+    );
+  }
 
   if (!isAuthorized) {
     return (

@@ -35,6 +35,7 @@
 }
 
 html {
+  scroll-behavior: smooth;
   transition:
     --accent 2s ease-in-out,
     --agenda-bg 2s ease-in-out;
@@ -347,6 +348,10 @@ textarea {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .site-header-enter {
     animation: none;
     opacity: 1;
