@@ -136,6 +136,7 @@ export const repertoire: Array<{
   {
     title: "Suíte Nordestina: Morena Bonita",
     artist: "Ronaldo Miranda",
+    audioUrl: "https://drive.google.com/drive/folders/1veCmcaWh_jLT7BaOpBWzHuuBICveAWRM",
     scoreUrl: "/scores/suite-nordestina.pdf",
     referenceUrl: "https://youtu.be/9wPhqxuZstU?si=o8InKEpa7k6pcFSA",
   },
@@ -161,12 +162,14 @@ export const repertoire: Array<{
   {
     title: "Bom Dia",
     artist: "Nana Caymmi, Gilberto Gil (arr. Pedro Veneziani)",
+    audioUrl: "https://drive.google.com/file/d/1EOw9ZuYh-FezoiiuXTnomQbI1B0PMB2e",
     scoreUrl: "/scores/bom-dia.pdf",
     referenceUrl: "https://youtu.be/zcNzaS8Vb4E?si=MwFJgGvKlQE2hDQM",
   },
   {
     title: "Domingo no Parque",
     artist: "Gilberto Gil (arr. Lindembergue Cardoso)",
+    audioUrl: "https://drive.google.com/drive/folders/1iv1SVKCFiXvR7UlYRZ6I8r08PmXRvduG?usp=sharing",
     scoreUrl: "/scores/domingo-no-parque.pdf",
     referenceUrl: "https://youtu.be/AyaAUah97wo?si=672lU6L2O27lx4kZ",
   },
