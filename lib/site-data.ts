@@ -143,6 +143,7 @@ export const repertoire: Array<{
   {
     title: "Suíte Nordestina: Dendê Trapiá",
     artist: "Ronaldo Miranda",
+    audioUrl: "https://drive.google.com/drive/folders/1vx7RcFfnmgHz8zgIfdxveA1VJ_xj8H0O",
     scoreUrl: "/scores/suite-nordestina.pdf",
     referenceUrl: "https://youtu.be/xKUWvKZIstA?si=zTBHh_DqgtT6fVhh",
   },
@@ -162,7 +163,7 @@ export const repertoire: Array<{
   {
     title: "Bom Dia",
     artist: "Nana Caymmi, Gilberto Gil (arr. Pedro Veneziani)",
-    audioUrl: "https://drive.google.com/file/d/1EOw9ZuYh-FezoiiuXTnomQbI1B0PMB2e",
+    audioUrl: "https://drive.google.com/drive/u/1/folders/103CMAXdPqvcqtKXVsoqLwknKNRQ4_ryg",
     scoreUrl: "/scores/bom-dia.pdf",
     referenceUrl: "https://youtu.be/zcNzaS8Vb4E?si=MwFJgGvKlQE2hDQM",
   },
