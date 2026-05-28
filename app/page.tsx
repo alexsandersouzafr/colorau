@@ -74,22 +74,25 @@ export default function Home() {
               </h2>
 
               <div className="mt-5 space-y-4">
-                <div className="p-4">
-                  <p className="text-xs uppercase tracking-[0.14em]w-fit py-0.5 text-accent">
-                    Data a anunciar
-                  </p>
-                  <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case">
-                    MAIS COLORAU!
-                  </h3>
+                <div className="p-4 flex justify-between items-end">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.14em]w-fit py-0.5 text-accent">
+                      SALA SÉRGIO MAGNANI - FUNDAÇÃO DE EDUCAÇÃO ARTÍSTICA{" "}
+                    </p>
+                    <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case">
+                      MAIS COLORAU!
+                    </h3>
+                  </div>
+                  <div className="text-4xl font-normal normal-case">26.SET</div>
                 </div>
                 <div className="p-4 flex justify-between items-end">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.14em]w-fit py-0.5 text-accent">
-                    SALA JUVENAL DIAS - PALÁCIO DAS ARTES
-                  </p>
-                  <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case">
-                    Dendê Trapiá
-                  </h3>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.14em]w-fit py-0.5 text-accent">
+                      SALA JUVENAL DIAS - PALÁCIO DAS ARTES
+                    </p>
+                    <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case">
+                      Dendê Trapiá
+                    </h3>
                   </div>
                   <div className="text-4xl font-normal normal-case">31.OUT</div>
                 </div>
@@ -97,7 +100,7 @@ export default function Home() {
             </div>
             <div
               aria-hidden="true"
-                className="texture-panel texture-2 texture-background h-10 md:h-56"
+              className="texture-panel texture-2 texture-background h-10 md:h-56"
             />
           </article>
 
@@ -115,16 +118,18 @@ export default function Home() {
                 A música começa no encontro.
               </h2>
               <p className="mt-4 text-black/75">
-                O Colorau é um coletivo coral contemporâneo nascido em Belo
+                O Colorau é um coletivo musical contemporâneo nascido em Belo
                 Horizonte a partir do desejo de retomar a música após o silêncio
                 da pandemia. Mais do que um coro, funciona como laboratório
-                artístico onde técnica e afeto coexistem.
+                artístico de outros grupos de câmara onde encaramos o rigor
+                técnico e artesanal do preparo do repertório com uma atitude
+                positiva de experimentação estética e educação musical de
+                qualidade.
               </p>
               <p className="mt-4 text-black/75">
-                No cenário cultural de Belo Horizonte, o Colorau ocupa um espaço
-                entre o rigor técnico da música coral e o calor popular da
-                cultura brasileira. A proposta artística integra música, corpo,
-                cena e presença coletiva.
+                No cenário cultural de Belo Horizonte, o Colorau exalta a música
+                e a cultura brasileira. A proposta artística integra música,
+                corpo, cena e presença coletiva.
               </p>
               <div className="mt-auto flex flex-wrap gap-3 pt-8 text-sm">
                 <Link

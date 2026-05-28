@@ -30,15 +30,15 @@ export default function SobrePage() {
                 O que é o COLORAU
               </h1>
               <p className="mt-5 max-w-4xl leading-relaxed text-black/80">
-                Colorau é um coral independente nascido em Belo Horizonte a
+                Colorau é um grupo musical independente nascido em Belo Horizonte a
                 partir do desejo de retomar a música após o silêncio da pandemia. O
                 grupo manipula o som em uma experiência
                 sensorial, artística e coletiva.
               </p>
               <p className="mt-4 max-w-4xl leading-relaxed text-black/75">
-                A cultura de trabalho do Colorau combina rigor técnico, experimentação
-                estética e experiência afetiva para reinventar a prática do canto
-                coletivo com calor humano e sofisticação cultural.
+                A cultura de trabalho do Colorau combina uma atitude positiva de rigor técnico,
+                experimentação estética, educação musical de qualidade 
+                para alcançar um trabalho coletivo com calor humano e sofisticação cultural.
               </p>
             </div>
             <div className="relative hidden min-h-[280px] md:block">
@@ -85,9 +85,9 @@ export default function SobrePage() {
                   <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">Soprano</h4>
                   <ul className="space-y-2 text-white/80">
                     <li>Ângela Maria</li>
-                    <li>Laiane Moreira</li>
                     <li>Laura Assis</li>
                     <li>Laura Santana</li>
+                    <li>Luísa Tomelin</li>
                     <li>Rafaela Bueno</li>
                     <li>Thais Soki</li>
                     <li aria-hidden="true" className="h-1 border-b border-4 border-accent/20 w-1/3"></li>
@@ -95,8 +95,6 @@ export default function SobrePage() {
                     <li>Ana Luz</li>
                     <li>Ester Ribeiro</li>
                     <li>Ingrid Mitraud</li>
-                    <li>Luíza Marilac</li>
-                    <li>Mariana Queiroz</li>
                   </ul>
                 </div>
                 <div>
@@ -109,7 +107,6 @@ export default function SobrePage() {
                     <li aria-hidden="true" className="h-1 border-b border-4 border-accent/20 w-1/3"></li>
                     <li>Ada Gomes</li>
                     <li>Caroline Borges</li>
-                    <li>Layla Alcântara</li>
                     <li>Paula Azevedo</li>
                   </ul>
                 </div>
@@ -129,7 +126,9 @@ export default function SobrePage() {
                 <div>
                   <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">Baixo</h4>
                   <ul className="space-y-2 text-white/80">
+                    <li>Amós Cunha</li>
                     <li>Burunin</li>
+                    <li>Rodrigo Praxedes</li>
                     <li>Makk</li>
                     <li aria-hidden="true" className="h-1 border-b border-4 border-accent/20 w-1/3"></li>
                     <li>Guilherme Felipe</li>
@@ -138,7 +137,6 @@ export default function SobrePage() {
                   </ul>
                 </div>
               </div>
-            
           </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
