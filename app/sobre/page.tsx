@@ -33,17 +33,18 @@ export default function SobrePage() {
               </h1>
               <p className="mt-5 max-w-4xl leading-relaxed text-black/80">
                 Colorau é um grupo musical independente nascido em Belo
-                Horizonte fundado pelo compositor Alexsander Souza e a soprano
+                Horizonte, fundado pelo compositor Alexsander Souza e pela soprano
                 Laura Assis. O grupo se propõe desenvolver música brasileira e
                 latina em uma experiência focada em resultados de alta qualidade
                 técnica através de musicalização de qualidade e com um olhar
                 artesanal para cada peça do repertório.
               </p>
               <p className="mt-4 max-w-4xl leading-relaxed text-black/75">
-                A cultura de trabalho do Colorau combina uma atitude positiva
+                A cultura de trabalho do Colorau combina atitude positiva
                 perante o rigor técnico, a experimentação estética, o ensino da
-                apreciação e da percepção musical, e educação artística para uma prática humanizada
-                que proporcione aos participantes excelente bagagem cultural e intelectual.
+                apreciação e da percepção musical e a educação artística para
+                uma prática humanizada que proporcione aos participantes uma
+                excelente bagagem cultural e experiência para a vida musical.
               </p>
             </div>
             <div className="relative hidden min-h-[280px] md:block">
