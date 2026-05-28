@@ -10,13 +10,13 @@ const placeholderBio = ""
 export const teamMembers = [
   {
     name: "Alexsander Souza",
-    role: "Direção Musical",
+    role: "Direção Geral e Direção Musical",
     imageUrl: "/pessoas/alexsander.png",
     bio: placeholderBio,
   },
   {
     name: "Laura Assis",
-    role: "Preparação vocal",
+    role: "Co-Direção Geral e Preparação Vocal",
     imageUrl: "/pessoas/laura.jpeg",
     bio: placeholderBio,
   },
@@ -28,7 +28,7 @@ export const teamMembers = [
   },
   {
     name: "Rafael Duarte",
-    role: "Design e Produção executiva",
+    role: "Design e Direção de Produção",
     imageUrl: "/pessoas/rafael.jpeg",
     bio: placeholderBio,
   },

@@ -53,7 +53,7 @@ export function Reveal({ children, className, textStagger = true }: RevealProps)
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.95,
+          duration: 0.5,
           ease: "power3.out",
         },
       );
@@ -65,7 +65,7 @@ export function Reveal({ children, className, textStagger = true }: RevealProps)
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.72,
+            duration: 0.5,
             ease: "power2.out",
             stagger: 0.06,
             clearProps: "transform",

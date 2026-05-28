@@ -7,10 +7,10 @@ import { getGalleryPhotos } from "@/lib/get-gallery-photos.server";
 export const dynamic = "force-dynamic";
 
 const roleOrder = [
-  "Direção Musical",
-  "Preparação vocal",
+  "Direção Geral e Direção Musical",
+  "Co-Direção Geral e Preparação Vocal",
   "Pianista",
-  "Design e Produção executiva",
+  "Design e Direção de Produção",
   "Jurídico e Produção executiva",
   "Produção cultural",
 ];
@@ -25,20 +25,25 @@ export default function SobrePage() {
         <Reveal className="section-card p-0 overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_280px]">
             <div className="px-6 py-7 md:px-10 md:py-10">
-              <span className="pill bg-accent text-accent-foreground">O Colorau</span>
+              <span className="pill bg-accent text-accent-foreground">
+                O Colorau
+              </span>
               <h1 className="mt-4 text-3xl font-semibold md:text-5xl">
                 O que é o COLORAU
               </h1>
               <p className="mt-5 max-w-4xl leading-relaxed text-black/80">
-                Colorau é um grupo musical independente nascido em Belo Horizonte a
-                partir do desejo de retomar a música após o silêncio da pandemia. O
-                grupo manipula o som em uma experiência
-                sensorial, artística e coletiva.
+                Colorau é um grupo musical independente nascido em Belo
+                Horizonte fundado pelo compositor Alexsander Souza e a soprano
+                Laura Assis. O grupo se propõe desenvolver música brasileira e
+                latina em uma experiência focada em resultados de alta qualidade
+                técnica através de musicalização de qualidade e com um olhar
+                artesanal para cada peça do repertório.
               </p>
               <p className="mt-4 max-w-4xl leading-relaxed text-black/75">
-                A cultura de trabalho do Colorau combina uma atitude positiva de rigor técnico,
-                experimentação estética, educação musical de qualidade 
-                para alcançar um trabalho coletivo com calor humano e sofisticação cultural.
+                A cultura de trabalho do Colorau combina uma atitude positiva
+                perante o rigor técnico, a experimentação estética, o ensino da
+                apreciação e da percepção musical, e educação artística para uma prática humanizada
+                que proporcione aos participantes excelente bagagem cultural e intelectual.
               </p>
             </div>
             <div className="relative hidden min-h-[280px] md:block">
@@ -60,12 +65,16 @@ export default function SobrePage() {
               className="texture-panel texture-4 texture-background hidden min-h-[200px] md:block"
             />
             <div className="px-6 py-7 md:px-10 md:py-10">
-              <h2 className="text-2xl font-semibold text-accent">O que nos move</h2>
+              <h2 className="text-2xl font-semibold text-accent">
+                O que nos move
+              </h2>
               <p className="mt-4 text-white/80">
-                Cuidamos do som e uns dos outros: exigência e acolhimento no mesmo passo.
+                Cuidamos do som e uns dos outros: exigência e acolhimento no
+                mesmo passo.
               </p>
               <p className="mt-4 text-white/80">
-                Gostamos de experimentar e supreender sem medo de errar em conjunto.
+                Gostamos de experimentar e supreender sem medo de errar em
+                conjunto.
               </p>
               <p className="mt-4 text-white/80">
                 Nossa brasilidade é plural, vibrante e contemtporânea.
@@ -80,128 +89,101 @@ export default function SobrePage() {
               Quem faz o COLORAU acontecer
             </h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div>
-                  <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">Soprano</h4>
-                  <ul className="space-y-2 text-white/80">
-                    <li>Ângela Maria</li>
-                    <li>Laura Assis</li>
-                    <li>Laura Santana</li>
-                    <li>Luísa Tomelin</li>
-                    <li>Rafaela Bueno</li>
-                    <li>Thais Soki</li>
-                    <li aria-hidden="true" className="h-1 border-b border-4 border-accent/20 w-1/3"></li>
-                    <li>Amanda Laís</li>
-                    <li>Ana Luz</li>
-                    <li>Ester Ribeiro</li>
-                    <li>Ingrid Mitraud</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">Contralto</h4>
-                  <ul className="space-y-2 text-white/80">
-                    <li>Aana</li>
-                    <li>Ana Rosa</li>
-                    <li>Malu Camargo</li>
-                    <li>Núbia Aguiar</li>
-                    <li aria-hidden="true" className="h-1 border-b border-4 border-accent/20 w-1/3"></li>
-                    <li>Ada Gomes</li>
-                    <li>Caroline Borges</li>
-                    <li>Paula Azevedo</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">Tenor</h4>
-                  <ul className="space-y-2 text-white/80">
-                    <li>Du Ribeiro</li>
-                    <li>Gustavo Moreno</li>
-                    <li>Luis Gustavo</li>
-                    <li>Margarete Leta</li>
-                    <li aria-hidden="true" className="h-1 border-b border-4 border-accent/20 w-1/3"></li>
-                    <li>André Dias</li>
-                    <li>Eduardo Moura</li>
-                    <li>Márcia Amélia</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">Baixo</h4>
-                  <ul className="space-y-2 text-white/80">
-                    <li>Amós Cunha</li>
-                    <li>Burunin</li>
-                    <li>Rodrigo Praxedes</li>
-                    <li>Makk</li>
-                    <li aria-hidden="true" className="h-1 border-b border-4 border-accent/20 w-1/3"></li>
-                    <li>Guilherme Felipe</li>
-                    <li>João Pereira</li>
-                    <li>Rafael Duarte</li>
-                  </ul>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div>
+                <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">
+                  Soprano
+                </h4>
+                <ul className="space-y-2 text-white/80">
+                  <li>Ângela Maria</li>
+                  <li>Laura Assis</li>
+                  <li>Laura Santana</li>
+                  <li>Luísa Tomelin</li>
+                  <li>Rafaela Bueno</li>
+                  <li>Thais Soki</li>
+                  <li
+                    aria-hidden="true"
+                    className="h-1 border-b border-4 border-accent/20 w-1/3"
+                  ></li>
+                  <li>Amanda Laís</li>
+                  <li>Ana Luz</li>
+                  <li>Ester Ribeiro</li>
+                  <li>Ingrid Mitraud</li>
+                </ul>
               </div>
+              <div>
+                <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">
+                  Contralto
+                </h4>
+                <ul className="space-y-2 text-white/80">
+                  <li>Aana</li>
+                  <li>Ana Rosa</li>
+                  <li>Malu Camargo</li>
+                  <li>Núbia Aguiar</li>
+                  <li
+                    aria-hidden="true"
+                    className="h-1 border-b border-4 border-accent/20 w-1/3"
+                  ></li>
+                  <li>Ada Gomes</li>
+                  <li>Caroline Borges</li>
+                  <li>Paula Azevedo</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">
+                  Tenor
+                </h4>
+                <ul className="space-y-2 text-white/80">
+                  <li>Du Ribeiro</li>
+                  <li>Gustavo Moreno</li>
+                  <li>Luis Gustavo</li>
+                  <li>Margarete Leta</li>
+                  <li
+                    aria-hidden="true"
+                    className="h-1 border-b border-4 border-accent/20 w-1/3"
+                  ></li>
+                  <li>André Dias</li>
+                  <li>Eduardo Moura</li>
+                  <li>Márcia Amélia</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-accent mb-4">
+                  Baixo
+                </h4>
+                <ul className="space-y-2 text-white/80">
+                  <li>Amós Cunha</li>
+                  <li>Burunin</li>
+                  <li>Rodrigo Praxedes</li>
+                  <li>Makk</li>
+                  <li
+                    aria-hidden="true"
+                    className="h-1 border-b border-4 border-accent/20 w-1/3"
+                  ></li>
+                  <li>Guilherme Felipe</li>
+                  <li>João Pereira</li>
+                  <li>Rafael Duarte</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {roleOrder.flatMap((role) => {
-                const members = teamMembers.filter((m) => m.role === role);
-                if (!members.length) return [];
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {roleOrder.flatMap((role) => {
+              const members = teamMembers.filter((m) => m.role === role);
+              if (!members.length) return [];
 
-                if (members.length >= 2) {
-                  return members.map((member) => (
-                    <div key={`${role}-${member.name}`}>
-                      <div>
-                        <div className="md:hidden">
-                          <article className="bg-white text-black">
-                            <div className="grid grid-cols-[120px_1fr]">
-                              <div className="relative min-h-[160px] bg-black/5">
-                                <Image
-                                  src={member.imageUrl}
-                                  alt={`Foto de ${member.name}`}
-                                  fill
-                                  className="object-cover grayscale"
-                                  sizes="120px"
-                                />
-                              </div>
-                              <div className="flex min-w-0 flex-col p-4">
-                                <p className="text-xs uppercase tracking-[0.14em] text-black/50">
-                                  Colorau
-                                </p>
-                                <h4 className="mt-2 text-xl font-semibold leading-tight">
-                                  {member.name}
-                                </h4>
-                                <p className="mt-1 text-xs uppercase tracking-[0.12em] text-black/70">
-                                  {member.role}
-                                </p>
-                              </div>
-                            </div>
-                            {member.bio && (
-                              <details className="border-t border-black/10 px-4 py-3">
-                                <summary className="cursor-pointer text-sm text-black/70">
-                                  Mini currículo
-                                </summary>
-                                <p className="mt-3 text-sm leading-relaxed text-black/75">
-                                  {member.bio}
-                                </p>
-                              </details>
-                            )}
-                          </article>
-                        </div>
-                        <div className="hidden md:block">
-                          <TeamMemberCard member={member} />
-                        </div>
-                      </div>
-                    </div>
-                  ));
-                }
-
-                return [
-                  <div key={role}>
+              if (members.length >= 2) {
+                return members.map((member) => (
+                  <div key={`${role}-${member.name}`}>
                     <div>
                       <div className="md:hidden">
                         <article className="bg-white text-black">
                           <div className="grid grid-cols-[120px_1fr]">
                             <div className="relative min-h-[160px] bg-black/5">
                               <Image
-                                src={members[0].imageUrl}
-                                alt={`Foto de ${members[0].name}`}
+                                src={member.imageUrl}
+                                alt={`Foto de ${member.name}`}
                                 fill
                                 className="object-cover grayscale"
                                 sizes="120px"
@@ -212,58 +194,105 @@ export default function SobrePage() {
                                 Colorau
                               </p>
                               <h4 className="mt-2 text-xl font-semibold leading-tight">
-                                {members[0].name}
+                                {member.name}
                               </h4>
                               <p className="mt-1 text-xs uppercase tracking-[0.12em] text-black/70">
-                                {members[0].role}
+                                {member.role}
                               </p>
                             </div>
                           </div>
-                          {members[0].bio && (
+                          {member.bio && (
                             <details className="border-t border-black/10 px-4 py-3">
                               <summary className="cursor-pointer text-sm text-black/70">
                                 Mini currículo
                               </summary>
                               <p className="mt-3 text-sm leading-relaxed text-black/75">
-                                {members[0].bio}
+                                {member.bio}
                               </p>
                             </details>
                           )}
                         </article>
                       </div>
                       <div className="hidden md:block">
-                        <TeamMemberCard
-                          key={`${members[0].name}-${members[0].role}`}
-                          member={members[0]}
-                        />
+                        <TeamMemberCard member={member} />
                       </div>
                     </div>
-                  </div>,
-                ];
-              })}
-            </div>
+                  </div>
+                ));
+              }
+
+              return [
+                <div key={role}>
+                  <div>
+                    <div className="md:hidden">
+                      <article className="bg-white text-black">
+                        <div className="grid grid-cols-[120px_1fr]">
+                          <div className="relative min-h-[160px] bg-black/5">
+                            <Image
+                              src={members[0].imageUrl}
+                              alt={`Foto de ${members[0].name}`}
+                              fill
+                              className="object-cover grayscale"
+                              sizes="120px"
+                            />
+                          </div>
+                          <div className="flex min-w-0 flex-col p-4">
+                            <p className="text-xs uppercase tracking-[0.14em] text-black/50">
+                              Colorau
+                            </p>
+                            <h4 className="mt-2 text-xl font-semibold leading-tight">
+                              {members[0].name}
+                            </h4>
+                            <p className="mt-1 text-xs uppercase tracking-[0.12em] text-black/70">
+                              {members[0].role}
+                            </p>
+                          </div>
+                        </div>
+                        {members[0].bio && (
+                          <details className="border-t border-black/10 px-4 py-3">
+                            <summary className="cursor-pointer text-sm text-black/70">
+                              Mini currículo
+                            </summary>
+                            <p className="mt-3 text-sm leading-relaxed text-black/75">
+                              {members[0].bio}
+                            </p>
+                          </details>
+                        )}
+                      </article>
+                    </div>
+                    <div className="hidden md:block">
+                      <TeamMemberCard
+                        key={`${members[0].name}-${members[0].role}`}
+                        member={members[0]}
+                      />
+                    </div>
+                  </div>
+                </div>,
+              ];
+            })}
+          </div>
         </Reveal>
 
         <Reveal className="section-card p-0">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_140px]">
             <div className="px-6 py-7 md:px-10 md:py-10">
-          <h2 className="text-2xl font-semibold text-accent">
-            Realizações em destaque
-          </h2>
-          <div className="mt-6 space-y-5">
-            {achievements.map((period) => (
-              <div key={period.year} className="bg-white p-4">
-                <p className="text-xs tracking-[0.14em] text-accent uppercase">
-                  {period.year}
-                </p>
-                <ul className="mt-2 space-y-2 text-sm text-black/75">
-                  {period.items.map((item) => (
-                    <li key={item}>- {item}</li>
-                  ))}
-                </ul>
+              <h2 className="text-2xl font-semibold text-accent">
+                Realizações em destaque
+              </h2>
+              <div className="mt-6 space-y-5">
+                {achievements.map((period) => (
+                  <div key={period.year} className="bg-white p-4">
+                    <p className="text-xs tracking-[0.14em] text-accent uppercase">
+                      {period.year}
+                    </p>
+                    <ul className="mt-2 space-y-2 text-sm text-black/75">
+                      {period.items.map((item) => (
+                        <li key={item}>- {item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
             </div>
             <div
               aria-hidden="true"
