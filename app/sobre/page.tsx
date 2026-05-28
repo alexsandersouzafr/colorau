@@ -36,12 +36,12 @@ export default function SobrePage() {
                 Horizonte, fundado pelo compositor Alexsander Souza e pela soprano
                 Laura Assis. O grupo se propõe desenvolver música brasileira e
                 latina em uma experiência focada em resultados de alta qualidade
-                técnica através de musicalização de qualidade e com um olhar
+                técnica através de musicalização de qualidade e por um olhar
                 artesanal para cada peça do repertório.
               </p>
               <p className="mt-4 max-w-4xl leading-relaxed text-black/75">
                 A cultura de trabalho do Colorau combina atitude positiva
-                perante o rigor técnico, a experimentação estética, o ensino da
+                perante o rigor técnico, a experimentação estética, o treinamento da
                 apreciação e da percepção musical e a educação artística para
                 uma prática humanizada que proporcione aos participantes uma
                 excelente bagagem cultural e experiência para a vida musical.
