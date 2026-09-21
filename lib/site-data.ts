@@ -136,41 +136,42 @@ export const repertoire: Array<{
   {
     title: "Suíte Nordestina: Morena Bonita",
     artist: "Ronaldo Miranda",
-    audioUrl: "https://drive.google.com/drive/folders/1veCmcaWh_jLT7BaOpBWzHuuBICveAWRM",
+    audioUrl: "https://drive.google.com/drive/folders/1KaEmhXfN09hW0t1nK2qykO2KDcFr7OjP",
     scoreUrl: "/scores/suite-nordestina.pdf",
     referenceUrl: "https://youtu.be/9wPhqxuZstU?si=o8InKEpa7k6pcFSA",
   },
   {
     title: "Suíte Nordestina: Dendê Trapiá",
     artist: "Ronaldo Miranda",
-    audioUrl: "https://drive.google.com/drive/folders/1vx7RcFfnmgHz8zgIfdxveA1VJ_xj8H0O",
+    audioUrl: "https://drive.google.com/drive/folders/1Ff7O4eS7UrNxe0VPUMbqX8_9bJBl63Ak",
     scoreUrl: "/scores/suite-nordestina.pdf",
     referenceUrl: "https://youtu.be/xKUWvKZIstA?si=zTBHh_DqgtT6fVhh",
   },
   {
     title: "Suíte Nordestina: Bumba Chora",
     artist: "Ronaldo Miranda",
-    audioUrl: "https://drive.google.com/drive/u/1/folders/12OZ42HSfrUV3xsD_NwWy-kewF3Vrt3-a",
+    audioUrl: "https://drive.google.com/drive/folders/1gzJI8pT3Tu8F6133zVJz_lCawxj4zqhy",
     scoreUrl: "/scores/suite-nordestina.pdf",
     referenceUrl: "https://youtu.be/uktsBR4-3EA?si=pdyNQWWeUT-CrTVe",
   },
   {
     title: "Suíte Nordestina: Eu vou, Eu Vou",
     artist: "Ronaldo Miranda",
+    audioUrl: "https://drive.google.com/drive/folders/1twXXXgbwOxh1SQliCmV717E_WoM7Kxlv",
     scoreUrl: "/scores/suite-nordestina.pdf",
     referenceUrl: "https://youtu.be/fDy7b955maU?si=0NM-lYblOmkyP3Ng",
   },
   {
     title: "Bom Dia",
     artist: "Nana Caymmi, Gilberto Gil (arr. Pedro Veneziani)",
-    audioUrl: "https://drive.google.com/drive/u/1/folders/103CMAXdPqvcqtKXVsoqLwknKNRQ4_ryg",
+    audioUrl: "https://drive.google.com/drive/folders/103CMAXdPqvcqtKXVsoqLwknKNRQ4_ryg",
     scoreUrl: "/scores/bom-dia.pdf",
     referenceUrl: "https://youtu.be/zcNzaS8Vb4E?si=MwFJgGvKlQE2hDQM",
   },
   {
     title: "Domingo no Parque",
     artist: "Gilberto Gil (arr. Lindembergue Cardoso)",
-    audioUrl: "https://drive.google.com/drive/folders/1iv1SVKCFiXvR7UlYRZ6I8r08PmXRvduG?usp=sharing",
+    audioUrl: "https://drive.google.com/drive/folders/1iv1SVKCFiXvR7UlYRZ6I8r08PmXRvduG",
     scoreUrl: "/scores/domingo-no-parque.pdf",
     referenceUrl: "https://youtu.be/AyaAUah97wo?si=672lU6L2O27lx4kZ",
   },
@@ -189,5 +190,10 @@ export const coristaDocuments: Array<{
     url: "/docs/The Structures and movement of breathing a primer for choirs and choruses.pdf",
   },
 ];
+
+export const eventTickets: Record<"maisColorau" | "dendeTrapia", string> = {
+  maisColorau: "https://www.sympla.com.br/evento/mais-colorau/3551216",
+  dendeTrapia: "https://bileto.sympla.com.br/event/125416/d/407136/s/2657503",
+};
 
 // Gallery photos are loaded dynamically from `public/` (see `get-gallery-photos.server.ts`).

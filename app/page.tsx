@@ -4,6 +4,7 @@ import { HeroOrbs } from "@/components/hero-orbs";
 import { Reveal } from "@/components/reveal";
 import { getGalleryPhotos } from "@/lib/get-gallery-photos.server";
 import { HomePhotoSlot } from "@/components/home-photo-slot";
+import { eventTickets } from "@/lib/site-data";
 
 export const dynamic = "force-dynamic";
 
@@ -82,6 +83,14 @@ export default function Home() {
                     <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case">
                       MAIS COLORAU!
                     </h3>
+                    <a
+                      className="mt-4 inline-flex bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground transition hover:brightness-110"
+                      href={eventTickets.maisColorau}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Ingressos
+                    </a>
                   </div>
                   <div className="text-4xl font-normal normal-case">26.SET</div>
                 </div>
@@ -93,6 +102,14 @@ export default function Home() {
                     <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case">
                       Dendê Trapiá
                     </h3>
+                    <a
+                      className="mt-4 inline-flex bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground transition hover:brightness-110"
+                      href={eventTickets.dendeTrapia}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Ingressos
+                    </a>
                   </div>
                   <div className="text-4xl font-normal normal-case">31.OUT</div>
                 </div>

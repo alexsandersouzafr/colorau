@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/reveal";
-import { coristaDocuments, repertoire } from "@/lib/site-data";
+import { coristaDocuments, eventTickets, repertoire } from "@/lib/site-data";
 import { FileText, Headphones, Music, PlayCircle } from "lucide-react";
 import Link from "next/link";
 
@@ -100,10 +100,26 @@ export default function CoristaPage() {
                 <div>
                   <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case mb-4">Mais Colorau!</h3>
                   <p><strong className="font-bold">26 de setembro</strong>, Sala Sergio Magnani, Fundação de Educação Artística</p>
+                  <a
+                    className="mt-4 inline-flex bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground transition hover:brightness-110"
+                    href={eventTickets.maisColorau}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Ingressos
+                  </a>
                 </div>
                 <div className="border-t border-accent/20 pt-4">
                   <h3 className="mt-2 subtitle-italic text-accent text-5xl font-normal normal-case mb-4">Dendê Trapiá</h3>
                   <p><strong className="font-bold">31 de outubro</strong>, Sala Juvenal Dias, Palácio das Artes</p>
+                  <a
+                    className="mt-4 inline-flex bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground transition hover:brightness-110"
+                    href={eventTickets.dendeTrapia}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Ingressos
+                  </a>
                 </div>
               </div>
             </Reveal>
